@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201710090057408_Rename.Designer.cs">
       <DependentUpon>201710090057408_Rename.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710092055484_CreatedOn-Non-Nullable.cs" />
+    <Compile Include="Migrations\201710092055484_CreatedOn-Non-Nullable.Designer.cs">
+      <DependentUpon>201710092055484_CreatedOn-Non-Nullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MsSqlDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710090057408_Rename.resx">
       <DependentUpon>201710090057408_Rename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710092055484_CreatedOn-Non-Nullable.resx">
+      <DependentUpon>201710092055484_CreatedOn-Non-Nullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
