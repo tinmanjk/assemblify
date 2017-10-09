@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<hr />
+
+@Ajax.ActionLink("Get Posts Json",
+    "GetPostsJson",
+    "Home",
+    null,
+    new AjaxOptions()
+    {
+        //InsertionMode = InsertionMode.Replace,
+        //UpdateTargetId = "posts",
+        OnSuccess = "jsonAlert"
+    },
+    new { @class = "btn btn-primary" })
+<hr />
+@Ajax.ActionLink("Get Posts Link",
+    "GetPosts",
+    "Home",
+    null,
+    new AjaxOptions()
+    {
+        //InsertionMode = InsertionMode.Replace,
+        //UpdateTargetId = "posts",
+        OnSuccess = "onAjaxSuccess"
+    },
+    new { @class = "btn btn-primary" })
+<hr />
+
+@using (Ajax.BeginForm("GetPosts",
+                                                    new AjaxOptions
+                                                    {
+                                                        UpdateTargetId = "posts",
+                                                        InsertionMode = InsertionMode.InsertAfter
+                                                    }))
+{
+    @*<input type="text" name="query" />*@
+    <input type="submit" value="Get Posts Form" />
+}
+
+
+<div id="posts">
+
+
+</div>
+
+
+
+
+@section scripts{
+    <script>
+
+        function jsonAlert(res) {
+            alert(JSON.stringify(res));
+        }
+
+        function onAjaxSuccess(res) {
+            //console.log(res);
+            loadPosts(res);
+        }
+
+        function loadPosts(postsHtml) {
+            $("#posts").html(postsHtml);
+        }
+
+    </script>
+}
+
+
+
+
+

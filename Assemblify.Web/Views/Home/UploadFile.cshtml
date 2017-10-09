@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "UploadFile";
+}
+
+@*@using Assemblify.Web.ViewModels.Home
+    @model PostSearchViewModel*@
+
+<hr />
+@using (@Html.BeginForm("UploadFile", "Home", FormMethod.Post, new
+{
+    enctype = "multipart/form-data"
+}))
+{
+    <input type="file" value="Browse" name="file" />
+    <input type="submit" value="Upload" />
+
+}
