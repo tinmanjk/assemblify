@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Assemblify.Data.Models.Abstracts
 {
-    public abstract class DataModel : IAuditable, IDeletable
+    public abstract class DataModel : IDataModel
     {
         public DataModel()
         {

@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstracts\DataModel.cs" />
+    <Compile Include="Contracts\IDataModel.cs" />
     <Compile Include="Contracts\IAuditable.cs" />
     <Compile Include="Contracts\IDeletable.cs" />
     <Compile Include="Post.cs" />

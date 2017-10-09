@@ -87,7 +87,7 @@ namespace Assemblify.Web.Controllers
         {
             if (this.Session["date"] == null)
             {
-                this.Session["date"] = DateTime.Now;
+                this.Session["date"] = DateTime.UtcNow;
             }
             this.Session["Pencho"] = "Pencho ot sesiqta";
 

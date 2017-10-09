@@ -9,20 +9,33 @@ using System.Threading.Tasks;
 
 namespace Assemblify.Data.Repositories
 {
-    public class EfRepository<T> : IEfRepository<T> where T : class, IDeletable
+    public class EfRepository<T> : IEfRepository<T> where T : class, IDataModel
     {
         private readonly MsSqlDbContext context;
+        private readonly DbSet<T> dbSet;
 
         public EfRepository(MsSqlDbContext context)
         {
             this.context = context;
+            this.dbSet = this.context.Set<T>();
+        }
+
+        public T GetById(object id)
+        {
+            var item = this.dbSet.Find(id);
+            if (item.IsDeleted)
+            {
+                return null;
+            }
+
+            return item;
         }
 
         public IQueryable<T> All
         {
             get
             {
-                return this.context.Set<T>().Where(x => !x.IsDeleted);
+                return this.dbSet.Where(x => !x.IsDeleted);
             }
         }
 
@@ -30,7 +43,7 @@ namespace Assemblify.Data.Repositories
         {
             get
             {
-                return this.context.Set<T>();
+                return this.dbSet;
             }
         }
 
@@ -44,14 +57,14 @@ namespace Assemblify.Data.Repositories
             }
             else
             {
-                this.context.Set<T>().Add(entity);
+                this.dbSet.Add(entity);
             }
         }
 
         public void Delete(T entity)
         {
             entity.IsDeleted = true;
-            entity.DeletedOn = DateTime.Now;
+            entity.DeletedOn = DateTime.UtcNow;
 
             var entry = this.context.Entry(entity);
             entry.State = EntityState.Modified;

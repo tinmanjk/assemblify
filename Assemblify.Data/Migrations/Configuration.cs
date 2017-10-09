@@ -45,7 +45,7 @@ namespace Assemblify.Data.Migrations
                     UserName = AdministratorUserName,
                     Email = AdministratorUserName,
                     EmailConfirmed = true,
-                    CreatedOn = DateTime.Now
+                    CreatedOn = DateTime.UtcNow
                 };
 
                 userManager.Create(user, AdministratorPassword);
@@ -64,7 +64,7 @@ namespace Assemblify.Data.Migrations
                         Title = "Post " + i,
                         Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lobortis nibh. Nullam bibendum, tortor quis porttitor fringilla, eros risus consequat orci, at scelerisque mauris dolor sit amet nulla. Vivamus turpis lorem, pellentesque eget enim ut, semper faucibus tortor. Aenean malesuada laoreet lorem.",
                         Author = context.Users.First(x => x.Email == AdministratorUserName),
-                        CreatedOn = DateTime.Now
+                        CreatedOn = DateTime.UtcNow
                     };
 
                     context.Posts.Add(post);
