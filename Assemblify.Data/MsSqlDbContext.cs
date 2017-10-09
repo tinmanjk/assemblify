@@ -26,6 +26,13 @@ namespace Assemblify.Data
             return base.SaveChanges();  
         }
 
+        public override Task<int> SaveChangesAsync()
+        {
+            this.ApplyAuditInfoRules();
+
+            return base.SaveChangesAsync();
+        }
+
         private void ApplyAuditInfoRules()
         {
             foreach (var entry in
@@ -50,5 +57,10 @@ namespace Assemblify.Data
         {
             return new MsSqlDbContext();
         }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //}
     }
 }
