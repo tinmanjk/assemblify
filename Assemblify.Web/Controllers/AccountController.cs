@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Assemblify.Web.ViewModels;
 using Assemblify.Data.Models;
+using Assemblify.Web.ViewModels.Account;
 
 namespace Assemblify.Web.Controllers
 {
