@@ -1,4 +1,6 @@
-﻿using Assemblify.Web.Infrastructure;
+﻿using Assemblify.Data.Models;
+using Assemblify.Web.Infrastructure;
+using Assemblify.Web.ViewModels.Home;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,7 @@ namespace Assemblify.Web.App_Start
                     var types = assembly.GetExportedTypes();
                     LoadStandardMappings(types, cfg);
                     LoadCustomMappings(types, cfg);
+                    LoadCustomMappingsManually(cfg);
                     Configuration = cfg;
                 });
         }
@@ -57,6 +60,13 @@ namespace Assemblify.Web.App_Start
             {
                 map.CreateMappings(mapperConfiguration);
             }
+        }
+
+
+        private static void LoadCustomMappingsManually(IMapperConfigurationExpression mapperConfiguration)
+        {
+            mapperConfiguration.CreateMap<PostViewModel, Post>()
+                  .ForMember(post => post.CreatedOn, cfg => cfg.MapFrom(postViewModel => postViewModel.PostedOn));
         }
     }
 }
