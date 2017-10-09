@@ -4,6 +4,7 @@ namespace Assemblify.Data.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -12,6 +13,8 @@ namespace Assemblify.Data.Migrations
     {
         private const string AdministratorUserName = "admin@admin.com";
         private const string AdministratorPassword = "asdasd";
+        private const string AdministratorRoleName = "Admin";
+
 
         public Configuration()
         {
@@ -21,39 +24,48 @@ namespace Assemblify.Data.Migrations
 
         protected override void Seed(MsSqlDbContext context)
         {
+            this.SeedRoles(context);
             this.SeedUsers(context);
-            this.SeedSampleData(context);
+            this.SeedSamplePosts(context);
 
             base.Seed(context);
         }
 
-        private void SeedUsers(MsSqlDbContext context)
+        private void SeedRoles(MsSqlDbContext context)
         {
-            if (!context.Roles.Any())
-            {
-                var roleName = "Admin";
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-                var roleStore = new RoleStore<IdentityRole>(context);
-                var roleManager = new RoleManager<IdentityRole>(roleStore);
+            var roleNames = new List<string>
+            {
+                AdministratorRoleName,
+                "User"
+            };
+
+            foreach (var roleName in roleNames)
+            {
                 var role = new IdentityRole { Name = roleName };
                 roleManager.Create(role);
-
-                var userStore = new UserStore<User>(context);
-                var userManager = new UserManager<User>(userStore);
-                var user = new User
-                {
-                    UserName = AdministratorUserName,
-                    Email = AdministratorUserName,
-                    EmailConfirmed = true,
-                    CreatedOn = DateTime.UtcNow
-                };
-
-                userManager.Create(user, AdministratorPassword);
-                userManager.AddToRole(user.Id, roleName);
             }
         }
 
-        private void SeedSampleData(MsSqlDbContext context)
+        private void SeedUsers(MsSqlDbContext context)
+        {
+            var userStore = new UserStore<User>(context);
+            var userManager = new UserManager<User>(userStore);
+            var user = new User
+            {
+                Id = Guid.NewGuid().ToString(),
+                UserName = AdministratorUserName,
+                Email = AdministratorUserName,
+                EmailConfirmed = true,
+            };
+
+            userManager.Create(user, AdministratorPassword);
+            userManager.AddToRole(user.Id, AdministratorRoleName);
+        }
+
+        private void SeedSamplePosts(MsSqlDbContext context)
         {
             if (!context.Posts.Any())
             {
