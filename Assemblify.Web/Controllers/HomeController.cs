@@ -109,7 +109,7 @@ namespace Assemblify.Web.Controllers
             //    .ToList();
 
             var posts = this.postsService
-                .GetGeneric<PostViewModel>();
+                .GetAllMappedTo<PostViewModel>();
 
 
             var model = new HomeViewModel()

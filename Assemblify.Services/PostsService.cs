@@ -3,12 +3,11 @@ using Assemblify.Data.Repositories;
 using Assemblify.Data.SaveContext;
 using Assemblify.Services.Contracts;
 using System;
-using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper.QueryableExtensions;
+using Assemblify.Infrastructure.Mapping;
 
 namespace Assemblify.Services
 {
@@ -30,10 +29,11 @@ namespace Assemblify.Services
             return this.postsRepo.All;
         }
 
-        public IEnumerable<T> GetGeneric<T>()
+        public IEnumerable<TDest> GetAllMappedTo<TDest>()
+            where TDest : IMapFrom<Post>
         {
             return this.GetAll()
-                .ProjectTo<T>()
+                .MapTo<TDest>()
                 .ToList();
         }
 
