@@ -6,7 +6,7 @@ using System.Web;
 using AutoMapper;
 using System.Web.Mvc;
 using Assemblify.Data.Models;
-using Assemblify.Web.Infrastructure;
+using Assemblify.Infrastructure.Mapping;
 
 namespace Assemblify.Web.ViewModels.Home
 {

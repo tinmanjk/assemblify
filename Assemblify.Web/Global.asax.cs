@@ -1,5 +1,6 @@
 ﻿using Assemblify.Data;
 using Assemblify.Data.Migrations;
+using Assemblify.Infrastructure.Mapping;
 using Assemblify.Web;
 using Assemblify.Web.App_Start;
 using System;
@@ -14,7 +15,7 @@ using System.Web.Routing;
 
 namespace Assemblify.Web
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {

@@ -234,7 +234,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -250,10 +249,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\IHaveCustomMappings.cs" />
-    <Compile Include="Infrastructure\IMapFrom.cs" />
-    <Compile Include="Infrastructure\MyCustomModelBinder.cs" />
-    <Compile Include="Infrastructure\QueryableExtensions.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\ForgotViewModel.cs" />
@@ -384,6 +379,10 @@
     <ProjectReference Include="..\Assemblify.Data\Assemblify.Data.csproj">
       <Project>{C9C93146-EF01-4E08-917B-919C52C934B4}</Project>
       <Name>Assemblify.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Assemblify.Infrastructure\Assemblify.Infrastructure.csproj">
+      <Project>{57c7eeda-8ba9-4b09-99dd-d6840584ad15}</Project>
+      <Name>Assemblify.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\Assemblify.Services\Assemblify.Services.csproj">
       <Project>{D88A855A-4EEC-4D3A-B2ED-E3D4683CEA7F}</Project>

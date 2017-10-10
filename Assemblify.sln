@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assemblify.Data.Models", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assemblify.Common", "Assemblify.Common\Assemblify.Common.csproj", "{1D158BAF-97C1-4E33-AE26-3756ABD54BFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assemblify.Infrastructure", "Assemblify.Infrastructure\Assemblify.Infrastructure.csproj", "{57C7EEDA-8BA9-4B09-99DD-D6840584AD15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1D158BAF-97C1-4E33-AE26-3756ABD54BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D158BAF-97C1-4E33-AE26-3756ABD54BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D158BAF-97C1-4E33-AE26-3756ABD54BFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57C7EEDA-8BA9-4B09-99DD-D6840584AD15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C7EEDA-8BA9-4B09-99DD-D6840584AD15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C7EEDA-8BA9-4B09-99DD-D6840584AD15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C7EEDA-8BA9-4B09-99DD-D6840584AD15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

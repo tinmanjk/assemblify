@@ -1,14 +1,11 @@
-﻿using Assemblify.Data.Models;
-using Assemblify.Web.Infrastructure;
-using Assemblify.Web.ViewModels.Home;
-using AutoMapper;
+﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
 
-namespace Assemblify.Web.App_Start
+namespace Assemblify.Infrastructure.Mapping
 {
     public class AutoMapperConfig
     {

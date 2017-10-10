@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Assemblify.Web.Infrastructure
+namespace Assemblify.Infrastructure.Mapping
 {
     public interface IHaveCustomMappings
     {

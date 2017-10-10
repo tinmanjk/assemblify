@@ -1,12 +1,11 @@
-﻿using Assemblify.Web.App_Start;
-using AutoMapper.QueryableExtensions;
+﻿using AutoMapper.QueryableExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 
-namespace Assemblify.Web.Infrastructure
+namespace Assemblify.Infrastructure.Mapping
 {
     public static class QueryableExtensions
     {
