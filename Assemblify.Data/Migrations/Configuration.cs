@@ -33,36 +33,42 @@ namespace Assemblify.Data.Migrations
 
         private void SeedRoles(MsSqlDbContext context)
         {
-            var roleStore = new RoleStore<IdentityRole>(context);
-            var roleManager = new RoleManager<IdentityRole>(roleStore);
+            if (!context.Roles.Any())
+            {
+                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-            var roleNames = new List<string>
+                var roleNames = new List<string>
             {
                 AdministratorRoleName,
                 "User"
             };
 
-            foreach (var roleName in roleNames)
-            {
-                var role = new IdentityRole { Name = roleName };
-                roleManager.Create(role);
+                foreach (var roleName in roleNames)
+                {
+                    var role = new IdentityRole { Name = roleName };
+                    roleManager.Create(role);
+                }
             }
         }
 
         private void SeedUsers(MsSqlDbContext context)
         {
-            var userStore = new UserStore<User>(context);
-            var userManager = new UserManager<User>(userStore);
-            var user = new User
+            if (!context.Users.Any())
             {
-                Id = Guid.NewGuid().ToString(),
-                UserName = AdministratorUserName,
-                Email = AdministratorUserName,
-                EmailConfirmed = true,
-            };
+                var userStore = new UserStore<User>(context);
+                var userManager = new UserManager<User>(userStore);
+                var user = new User
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = AdministratorUserName,
+                    Email = AdministratorUserName,
+                    EmailConfirmed = true,
+                };
 
-            userManager.Create(user, AdministratorPassword);
-            userManager.AddToRole(user.Id, AdministratorRoleName);
+                userManager.Create(user, AdministratorPassword);
+                userManager.AddToRole(user.Id, AdministratorRoleName);
+            }
         }
 
         private void SeedSamplePosts(MsSqlDbContext context)
