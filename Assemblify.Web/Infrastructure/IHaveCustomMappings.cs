@@ -8,6 +8,8 @@ namespace Assemblify.Web.Infrastructure
 {
     public interface IHaveCustomMappings
     {
-        void CreateMappings(IMapperConfigurationExpression configuration);
+        void CreateMappingsForMe(IMapperConfigurationExpression configuration);
+
+        void CreateMappingsForDestination(IMapperConfigurationExpression configuration);
     }
 }

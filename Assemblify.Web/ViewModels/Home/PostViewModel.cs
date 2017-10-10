@@ -21,16 +21,22 @@ namespace Assemblify.Web.ViewModels.Home
         public string Content { get; set; }
 
         public string AuthorEmail { get; set; }
-        
+
         // may lead to conflict if there are custom display templates
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime PostedOn { get; set; }
 
-        public void CreateMappings(IMapperConfigurationExpression configuration)
+        public void CreateMappingsForMe(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Post, PostViewModel>()
                 .ForMember(postViewModel => postViewModel.AuthorEmail, cfg => cfg.MapFrom(post => post.Author.Email))
                 .ForMember(postViewModel => postViewModel.PostedOn, cfg => cfg.MapFrom(post => post.CreatedOn));
+        }
+
+        public void CreateMappingsForDestination(IMapperConfigurationExpression configuration)
+        {
+            configuration.CreateMap<PostViewModel, Post>()
+                .ForMember(post => post.CreatedOn, cfg => cfg.MapFrom(postViewModel => postViewModel.PostedOn));
         }
     }
 }

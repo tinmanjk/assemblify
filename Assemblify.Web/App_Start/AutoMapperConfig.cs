@@ -22,7 +22,6 @@ namespace Assemblify.Web.App_Start
                     var types = assembly.GetExportedTypes();
                     LoadStandardMappings(types, cfg);
                     LoadCustomMappings(types, cfg);
-                    LoadCustomMappingsManually(cfg);
                     Configuration = cfg;
                 });
         }
@@ -58,15 +57,9 @@ namespace Assemblify.Web.App_Start
 
             foreach (var map in maps)
             {
-                map.CreateMappings(mapperConfiguration);
+                map.CreateMappingsForMe(mapperConfiguration);
+                map.CreateMappingsForDestination(mapperConfiguration);
             }
-        }
-
-
-        private static void LoadCustomMappingsManually(IMapperConfigurationExpression mapperConfiguration)
-        {
-            mapperConfiguration.CreateMap<PostViewModel, Post>()
-                  .ForMember(post => post.CreatedOn, cfg => cfg.MapFrom(postViewModel => postViewModel.PostedOn));
         }
     }
 }
