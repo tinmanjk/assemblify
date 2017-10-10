@@ -27,8 +27,7 @@ namespace Assemblify.Web.Controllers
         public ActionResult GetFiltered(int pageSize)
         {
             var posts = this.postsService
-                .GetAll()
-                .ProjectTo<PostViewModel>()
+                .GetAllMappedTo<PostViewModel>()
                 .OrderBy(x => x.Title)
                 .Take(pageSize)
                 .ToList();
@@ -62,14 +61,20 @@ namespace Assemblify.Web.Controllers
         [HttpPost]
         public ActionResult Search(PostSearchViewModel model)
         {
-            model.FoundPosts = this.postsService
-                .GetAll()
-                .ProjectTo<PostViewModel>()
-                .Where(x =>
-                        x.Title.ToLower().Contains(model.SearchTerm1.ToLower()) ||
-                        x.Title.ToLower().Contains(model.SearchTerm2.ToLower()))
-                .OrderBy(x => x.Title)
-                .ToList();
+            if (model.SearchTerm != null)
+            {
+                model.FoundPosts = this.postsService
+                    .GetAllMappedTo<PostViewModel>()
+                    .Where(x =>
+                            x.Title.ToLower().Contains(model.SearchTerm.ToLower())
+                            )
+                    .OrderBy(x => x.Title)
+                    .ToList();
+            }
+            else
+            {
+                model.FoundPosts = new List<PostViewModel>();
+            }
 
             return this.View(model);
         }
@@ -97,16 +102,6 @@ namespace Assemblify.Web.Controllers
         public ActionResult Index()
         {
             this.TempData["source"] = "Index";
-
-
-            //var posts = this.postsService
-            //    .GetAll()
-            //    .ProjectTo<PostViewModel>()
-            //    //.MapTo<PostViewModel>() // 1. Automapper syntax sugar      
-            //    .OrderBy(x => x.Title)
-            //    //.ToList()
-            //    //.Select(x => this.mapper.Map<PostViewModel>(x)) // 2. mapper.Map method needs to be done on IEnumerable
-            //    .ToList();
 
             var posts = this.postsService
                 .GetAllMappedTo<PostViewModel>();
@@ -140,8 +135,7 @@ namespace Assemblify.Web.Controllers
         public ActionResult GetPosts()
         {
             var posts = this.postsService
-                .GetAll()
-                .ProjectTo<PostViewModel>()
+                .GetAllMappedTo<PostViewModel>()
                 .OrderBy(x => x.Title)
                 .ToList();
 
@@ -151,10 +145,9 @@ namespace Assemblify.Web.Controllers
         public ActionResult GetPostsJson()
         {
             var posts = this.postsService
-                .GetAll()
-                .ProjectTo<PostViewModel>()
+                .GetAllMappedTo<PostViewModel>()
                 .Select(x => new { Title = x.Title, Author = x.AuthorEmail })
-                .OrderBy(x => x)
+                .OrderBy(x => x.Title)
                 .ToList();
 
             return this.Json(posts, JsonRequestBehavior.AllowGet);

@@ -24,24 +24,26 @@ namespace Assemblify.Services
 
         }
 
-        public IQueryable<Post> GetAll()
+        public IEnumerable<Post> GetAll()
         {
-            return this.postsRepo.All;
+            return this.postsRepo
+                .All
+                .ToList();
         }
 
         public IEnumerable<TDest> GetAllMappedTo<TDest>()
             where TDest : IMapFrom<Post>
         {
-            return this.GetAll()
-                .MapTo<TDest>()
-                .ToList();
+            return this.postsRepo
+                    .All
+                    .MapTo<TDest>()
+                    .ToList();
         }
 
         public void Update(Post post)
         {
             this.postsRepo.Update(post);
-            this.context.Commit();
-            
+            this.context.Commit();         
         }
     }
 }

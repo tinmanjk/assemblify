@@ -8,11 +8,7 @@
 <hr />
 @using (@Html.BeginForm("Search", "Home", FormMethod.Post, null))
 {
-    @Html.EditorFor(x => x.SearchTerm1)
-    @*<input type="text" name="searchTerm1" />*@
-
-    @*<input type="text" name="searchTerm2" />*@
-
+    @Html.EditorFor(x => x.SearchTerm)
 
     <input type="submit" value="Search" />
 }

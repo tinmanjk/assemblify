@@ -7,9 +7,7 @@ namespace Assemblify.Web.ViewModels.Home
 {
     public class PostSearchViewModel
     {
-        public string SearchTerm1 { get; set; }
-
-        public string SearchTerm2 { get; set; }
+        public string SearchTerm { get; set; }
 
         public IEnumerable<PostViewModel> FoundPosts { get; set; }
 

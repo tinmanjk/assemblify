@@ -7,7 +7,7 @@ namespace Assemblify.Services.Contracts
 {
     public interface IPostsService
     {
-        IQueryable<Post> GetAll();
+        IEnumerable<Post> GetAll();
 
         IEnumerable<TDest> GetAllMappedTo<TDest>() 
             where TDest : IMapFrom<Post>;
