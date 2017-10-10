@@ -373,6 +373,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Assemblify.Common\Assemblify.Common.csproj">
+      <Project>{1d158baf-97c1-4e33-ae26-3756abd54bfd}</Project>
+      <Name>Assemblify.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Assemblify.Data.Models\Assemblify.Data.Models.csproj">
       <Project>{769F8F44-21F2-4374-997E-3DF923DCA05D}</Project>
       <Name>Assemblify.Data.Models</Name>

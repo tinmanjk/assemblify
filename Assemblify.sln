@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assemblify.Data", "Assembli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assemblify.Data.Models", "Assemblify.Data.Models\Assemblify.Data.Models.csproj", "{769F8F44-21F2-4374-997E-3DF923DCA05D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assemblify.Common", "Assemblify.Common\Assemblify.Common.csproj", "{1D158BAF-97C1-4E33-AE26-3756ABD54BFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{769F8F44-21F2-4374-997E-3DF923DCA05D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{769F8F44-21F2-4374-997E-3DF923DCA05D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{769F8F44-21F2-4374-997E-3DF923DCA05D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D158BAF-97C1-4E33-AE26-3756ABD54BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D158BAF-97C1-4E33-AE26-3756ABD54BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D158BAF-97C1-4E33-AE26-3756ABD54BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D158BAF-97C1-4E33-AE26-3756ABD54BFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

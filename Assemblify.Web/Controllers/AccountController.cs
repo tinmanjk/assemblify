@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Assemblify.Web.ViewModels;
 using Assemblify.Data.Models;
 using Assemblify.Web.ViewModels.Account;
+using Assemblify.Common;
 
 namespace Assemblify.Web.Controllers
 {
@@ -161,7 +162,7 @@ namespace Assemblify.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    this.UserManager.AddToRole(user.Id, "User");
+                    this.UserManager.AddToRole(user.Id, GlobalConstants.UserRoleName);
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

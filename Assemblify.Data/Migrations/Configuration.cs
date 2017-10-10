@@ -1,5 +1,6 @@
 namespace Assemblify.Data.Migrations
 {
+    using Common;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
@@ -13,7 +14,9 @@ namespace Assemblify.Data.Migrations
     {
         private const string AdministratorUserName = "admin@admin.com";
         private const string AdministratorPassword = "asdasd";
-        private const string AdministratorRoleName = "Admin";
+        private const string AdministratorRoleName = GlobalConstants.AdministratorRoleName;
+        private const string UserRoleName = GlobalConstants.UserRoleName;
+
 
 
         public Configuration()
@@ -41,7 +44,7 @@ namespace Assemblify.Data.Migrations
                 var roleNames = new List<string>
             {
                 AdministratorRoleName,
-                "User"
+                UserRoleName
             };
 
                 foreach (var roleName in roleNames)
