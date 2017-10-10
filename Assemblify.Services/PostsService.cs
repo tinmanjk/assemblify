@@ -3,10 +3,12 @@ using Assemblify.Data.Repositories;
 using Assemblify.Data.SaveContext;
 using Assemblify.Services.Contracts;
 using System;
+using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper.QueryableExtensions;
 
 namespace Assemblify.Services
 {
@@ -26,6 +28,13 @@ namespace Assemblify.Services
         public IQueryable<Post> GetAll()
         {
             return this.postsRepo.All;
+        }
+
+        public IEnumerable<T> GetGeneric<T>()
+        {
+            return this.GetAll()
+                .ProjectTo<T>()
+                .ToList();
         }
 
         public void Update(Post post)

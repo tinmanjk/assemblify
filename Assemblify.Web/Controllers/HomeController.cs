@@ -99,14 +99,18 @@ namespace Assemblify.Web.Controllers
             this.TempData["source"] = "Index";
 
 
+            //var posts = this.postsService
+            //    .GetAll()
+            //    .ProjectTo<PostViewModel>()
+            //    //.MapTo<PostViewModel>() // 1. Automapper syntax sugar      
+            //    .OrderBy(x => x.Title)
+            //    //.ToList()
+            //    //.Select(x => this.mapper.Map<PostViewModel>(x)) // 2. mapper.Map method needs to be done on IEnumerable
+            //    .ToList();
+
             var posts = this.postsService
-                .GetAll()
-                .ProjectTo<PostViewModel>()
-                //.MapTo<PostViewModel>() // 1. Automapper syntax sugar      
-                .OrderBy(x => x.Title)
-                //.ToList()
-                //.Select(x => this.mapper.Map<PostViewModel>(x)) // 2. mapper.Map method needs to be done on IEnumerable
-                .ToList();
+                .GetGeneric<PostViewModel>();
+
 
             var model = new HomeViewModel()
             {
