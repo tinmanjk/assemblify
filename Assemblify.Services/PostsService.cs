@@ -45,5 +45,15 @@ namespace Assemblify.Services
             this.postsRepo.Update(post);
             this.context.Commit();         
         }
+
+        public bool PostExists()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CreatePost(Post post)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

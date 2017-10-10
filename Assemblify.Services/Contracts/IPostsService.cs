@@ -12,6 +12,10 @@ namespace Assemblify.Services.Contracts
         IEnumerable<TDest> GetAllMappedTo<TDest>() 
             where TDest : IMapFrom<Post>;
 
+        bool PostExists();
+
+        bool CreatePost(Post post);
+
         void Update(Post post);
     }
 }
