@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
@@ -56,10 +60,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PostsServiceTests\GetAllMappedTo.cs" />
     <Compile Include="PostsServiceTests\GetAllTests.cs" />
+    <Compile Include="PostsServiceTests\Mocks\PostMapFrom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -74,9 +81,17 @@
       <Project>{C9C93146-EF01-4E08-917B-919C52C934B4}</Project>
       <Name>Assemblify.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Assemblify.Infrastructure\Assemblify.Infrastructure.csproj">
+      <Project>{57C7EEDA-8BA9-4B09-99DD-D6840584AD15}</Project>
+      <Name>Assemblify.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Assemblify.Services\Assemblify.Services.csproj">
       <Project>{D88A855A-4EEC-4D3A-B2ED-E3D4683CEA7F}</Project>
       <Name>Assemblify.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Assemblify.Web\Assemblify.Web.csproj">
+      <Project>{B7917151-076E-458B-9BA7-5070CA2CDF1B}</Project>
+      <Name>Assemblify.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
