@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeControllerTests\ConstructorTests.cs" />
+    <Compile Include="Controllers\HomeControllerTests\IndexTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +105,10 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Assemblify.Infrastructure\Assemblify.Infrastructure.csproj">
+      <Project>{57c7eeda-8ba9-4b09-99dd-d6840584ad15}</Project>
+      <Name>Assemblify.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Assemblify.Services\Assemblify.Services.csproj">
       <Project>{D88A855A-4EEC-4D3A-B2ED-E3D4683CEA7F}</Project>
       <Name>Assemblify.Services</Name>

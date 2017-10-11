@@ -122,10 +122,12 @@ namespace Assemblify.Web.Controllers
         {
             this.TempData["source"] = "Index";
 
-            var posts = this.cachingProvider
-                    .Get("cachedPosts", () =>
-                        this.postsService
-                            .GetAllMappedTo<PostViewModel>(), 60 * 1);
+            //var posts = this.cachingProvider
+            //        .Get("cachedPosts", () =>
+            //            this.postsService
+            //                .GetAllMappedTo<PostViewModel>(), 60 * 1);
+            var posts = this.postsService
+                            .GetAllMappedTo<PostViewModel>();
 
 
             var model = new HomeViewModel()
