@@ -22,10 +22,12 @@ namespace Assemblify.Web
             );
 
             routes.MapRoute(
-                name: "UserController",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                 name: "UserPosts",
+                 url: "{username}/{action}/{postTitle}",
+                 defaults: new { controller = "User", action = "Profile", postTitle = UrlParameter.Optional }
+                 //constraints: new { username = new UserNameConstraint() }
+             );
+
         }
     }
 }
