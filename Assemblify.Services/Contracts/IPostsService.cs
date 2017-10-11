@@ -17,5 +17,9 @@ namespace Assemblify.Services.Contracts
         bool CreatePost(Post post);
 
         void Update(Post post);
+
+        IEnumerable<TDest> GetPostsByUserNameMappedTo<TDest>(string userName)
+         where TDest : IMapFrom<Post>;
+
     }
 }

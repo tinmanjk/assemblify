@@ -18,8 +18,8 @@ namespace Assemblify.Web
             routes.MapRoute(
              name: "UserPosts",
              url: "{username}/{action}/{postTitle}",
-             defaults: new { controller = "User", action = "UserProfile", postTitle = UrlParameter.Optional }
-            //constraints: new { username = new UserNameConstraint() }
+             defaults: new { controller = "User", action = "UserProfile", postTitle = UrlParameter.Optional },
+            constraints: new { username = new UserNameConstraint() }
             );
 
             routes.MapRoute(
@@ -30,6 +30,18 @@ namespace Assemblify.Web
 
 
 
+        }
+
+        public class UserNameConstraint : IRouteConstraint
+        {
+            public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+            {
+                List<string> users = new List<string>() { "admin", "pesho" };
+                // Get the username from the url
+                var username = values["username"].ToString().ToLower();
+                // Check for a match (assumes case insensitive)
+                return users.Any(x => x.ToLower() == username);
+            }
         }
     }
 }

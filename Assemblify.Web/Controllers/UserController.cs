@@ -25,10 +25,10 @@ namespace Assemblify.Web.Controllers
             this.cachingProvider = cachingProvider;
         }
 
-        public ActionResult Posts(string postTitle)
+        public ActionResult Posts(string username, string postTitle)
         {
             var posts = this.postsService
-                            .GetAllMappedTo<UserPostsViewModel>();
+                            .GetPostsByUserNameMappedTo<UserPostsViewModel>(username);
             return View(posts);
         }
 

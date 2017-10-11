@@ -55,5 +55,15 @@ namespace Assemblify.Services
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<TDest> GetPostsByUserNameMappedTo<TDest>(string userName) where TDest : IMapFrom<Post>
+        {
+
+            return this.postsRepo
+                    .All
+                    .Where(x => x.Author.UserName == userName.ToLower())
+                    .MapTo<TDest>()
+                    .ToList();
+        }
     }
 }
