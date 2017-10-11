@@ -22,6 +22,21 @@ namespace Assemblify.Web.Controllers
             IMapper mapper,
             ICachingProvider cachingProvider)
         {
+            if (postsService == null)
+            {
+                throw new ArgumentNullException(nameof(postsService));
+            }
+
+            if (mapper == null)
+            {
+                throw new ArgumentNullException(nameof(mapper));
+            }
+
+            if (cachingProvider == null)
+            {
+                throw new ArgumentNullException(nameof(cachingProvider));
+            }
+
             this.postsService = postsService;
             this.mapper = mapper;
             this.cachingProvider = cachingProvider;
