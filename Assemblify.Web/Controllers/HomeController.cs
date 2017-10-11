@@ -18,7 +18,7 @@ namespace Assemblify.Web.Controllers
         private readonly IMapper mapper;
         private readonly ICachingProvider cachingProvider;
 
-        public HomeController(IPostsService postsService, 
+        public HomeController(IPostsService postsService,
             IMapper mapper,
             ICachingProvider cachingProvider)
         {
@@ -107,8 +107,10 @@ namespace Assemblify.Web.Controllers
         {
             this.TempData["source"] = "Index";
 
-            var posts = this.postsService
-                .GetAllMappedTo<PostViewModel>();
+            var posts = this.cachingProvider
+                    .Get("cachedPosts", () =>
+                        this.postsService
+                            .GetAllMappedTo<PostViewModel>(), 60 * 1);
 
 
             var model = new HomeViewModel()
