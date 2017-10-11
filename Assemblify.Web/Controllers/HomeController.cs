@@ -1,5 +1,6 @@
 ﻿using Assemblify.Data.Models;
 using Assemblify.Services.Contracts;
+using Assemblify.Web.Providers.Contracts;
 using Assemblify.Web.ViewModels.Home;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -15,12 +16,15 @@ namespace Assemblify.Web.Controllers
     {
         private readonly IPostsService postsService;
         private readonly IMapper mapper;
-        //private readonly ISaveContext context;
+        private readonly ICachingProvider cachingProvider;
 
-        public HomeController(IPostsService postsService, IMapper mapper)
+        public HomeController(IPostsService postsService, 
+            IMapper mapper,
+            ICachingProvider cachingProvider)
         {
             this.postsService = postsService;
             this.mapper = mapper;
+            this.cachingProvider = cachingProvider;
         }
 
         [HttpGet]

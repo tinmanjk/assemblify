@@ -19,6 +19,8 @@ namespace Assemblify.Web.App_Start
     using AutoMapper;
     using System.Reflection;
     using System.IO;
+    using Providers.Contracts;
+    using Providers;
 
     public static class NinjectWebCommon
     {
@@ -77,7 +79,7 @@ namespace Assemblify.Web.App_Start
                  .BindDefaultInterface();
             });
 
-            // hacky
+            // Services bind
             kernel.Bind(x =>
             {
                 x.FromAssemblyContaining(typeof(IService))
@@ -88,6 +90,11 @@ namespace Assemblify.Web.App_Start
             kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
             kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
             kernel.Bind<ISaveContext>().To<SaveContext>();
+
+            // Providers
+
+            kernel.Bind<ICachingProvider>().To<HttpCachingProvider>().InRequestScope();
+            
 
             kernel.Bind<IMapper>().ToMethod(x=>Mapper.Instance).InSingletonScope();
         }

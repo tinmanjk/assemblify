@@ -388,6 +388,10 @@
       <Project>{D88A855A-4EEC-4D3A-B2ED-E3D4683CEA7F}</Project>
       <Name>Assemblify.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Assemblify.Web.Providers\Assemblify.Web.Providers.csproj">
+      <Project>{9D9DDCB3-C583-458E-B610-D60EB7428606}</Project>
+      <Name>Assemblify.Web.Providers</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
