@@ -275,6 +275,7 @@
     <Compile Include="ViewModels\Manage\ManageLoginsViewModel.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\User\UserPostsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -357,11 +358,13 @@
     <None Include="Views\Home\DisplayTemplates\PostViewModelWithInjection.cshtml" />
     <Content Include="Views\Home\SessionExample.cshtml" />
     <Content Include="Views\Home\TempExample.cshtml" />
+    <Content Include="Views\User\Posts.cshtml" />
+    <Content Include="Views\User\DisplayTemplates\UserPostsViewModel.cshtml" />
+    <Content Include="Views\Shared\_PostUserPostDetailsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="ViewModels\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

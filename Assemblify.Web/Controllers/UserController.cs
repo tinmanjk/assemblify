@@ -1,5 +1,6 @@
 ﻿using Assemblify.Services.Contracts;
 using Assemblify.Web.Providers.Contracts;
+using Assemblify.Web.ViewModels.User;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,18 @@ namespace Assemblify.Web.Controllers
             this.postsService = postsService;
             this.mapper = mapper;
             this.cachingProvider = cachingProvider;
+        }
+
+        public ActionResult Posts(string postTitle)
+        {
+            var posts = this.postsService
+                            .GetAllMappedTo<UserPostsViewModel>();
+            return View(posts);
+        }
+
+        public ActionResult UserProfile(string username, string postTitle)
+        {
+            return Content("Profile of" + username);
         }
     }
 }
