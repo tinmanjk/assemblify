@@ -24,7 +24,7 @@ namespace Assemblify.Web
             ViewEngines.Engines.Add(new RazorViewEngine());
 
             // moje DropCreate za testovite celi
-            //Database.SetInitializer(new DropCreateDatabaseAlways<MsSqlDbContext>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MsSqlDbContext>());
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<MsSqlDbContext, Configuration>());
 

@@ -10,6 +10,9 @@ namespace Assemblify.Common
     {
         public const string AdministratorRoleName = "Admin";
         public const string UserRoleName = "User";
+        public const string AdministratorUserName = "admin";
+        public const string AdministratorEmail = "admin@admin.com";
+        public const string AdministratorPassword = "asdasd";
 
     }
 }

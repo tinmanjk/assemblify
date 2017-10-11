@@ -12,13 +12,6 @@ namespace Assemblify.Data.Migrations
 
     public sealed class Configuration : DbMigrationsConfiguration<MsSqlDbContext>
     {
-        private const string AdministratorUserName = "admin@admin.com";
-        private const string AdministratorPassword = "asdasd";
-        private const string AdministratorRoleName = GlobalConstants.AdministratorRoleName;
-        private const string UserRoleName = GlobalConstants.UserRoleName;
-
-
-
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = false;
@@ -43,8 +36,8 @@ namespace Assemblify.Data.Migrations
 
                 var roleNames = new List<string>
             {
-                AdministratorRoleName,
-                UserRoleName
+                GlobalConstants.AdministratorRoleName,
+                GlobalConstants.UserRoleName
             };
 
                 foreach (var roleName in roleNames)
@@ -64,13 +57,13 @@ namespace Assemblify.Data.Migrations
                 var user = new User
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = AdministratorUserName,
-                    Email = AdministratorUserName,
+                    UserName = GlobalConstants.AdministratorUserName,
+                    Email = GlobalConstants.AdministratorEmail,
                     EmailConfirmed = true,
                 };
 
-                userManager.Create(user, AdministratorPassword);
-                userManager.AddToRole(user.Id, AdministratorRoleName);
+                userManager.Create(user, GlobalConstants.AdministratorPassword);
+                userManager.AddToRole(user.Id, GlobalConstants.AdministratorRoleName);
             }
         }
 
@@ -84,7 +77,7 @@ namespace Assemblify.Data.Migrations
                     {
                         Title = "Post " + i,
                         Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lobortis nibh. Nullam bibendum, tortor quis porttitor fringilla, eros risus consequat orci, at scelerisque mauris dolor sit amet nulla. Vivamus turpis lorem, pellentesque eget enim ut, semper faucibus tortor. Aenean malesuada laoreet lorem.",
-                        Author = context.Users.First(x => x.Email == AdministratorUserName),
+                        Author = context.Users.First(x => x.Email == GlobalConstants.AdministratorEmail),
                         CreatedOn = DateTime.UtcNow
                     };
 
