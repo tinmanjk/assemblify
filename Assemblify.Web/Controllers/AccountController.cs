@@ -156,7 +156,7 @@ namespace Assemblify.Web.Controllers
             {
                 var user = new User
                 {
-                    UserName = model.Email,
+                    UserName = model.UserName,
                     Email = model.Email
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
