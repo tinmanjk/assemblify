@@ -1,4 +1,5 @@
 ﻿using Assemblify.Services.Contracts;
+using Assemblify.Web.Providers.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,27 +12,28 @@ namespace Assemblify.Web.Routes.Contraints
     public class UserNameConstraint : IRouteConstraint
     {
 
-        private IUsersService usersService;
+        private ICachingProvider cachingProvider;
+        //private IUsersService usersService;
 
         public UserNameConstraint()
-        : this(DependencyResolver.Current.GetService<IUsersService>())
+        : this(DependencyResolver.Current.GetService<ICachingProvider>())
         {
         }
 
-        public UserNameConstraint(IUsersService usersService)
+        public UserNameConstraint(ICachingProvider cachingProvider)
         {
-            this.usersService = usersService;
+            this.cachingProvider = cachingProvider;
         }
 
         public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
         {
-            //List<string> users = new List<string>() { "admin", "pesho" };
-            var users = this.usersService.GetAll();
+
+            var usernames = this.cachingProvider.GetUserNames();
 
             // Get the username from the url
             var username = values["username"].ToString().ToLower();
             // Check for a match (assumes case insensitive)
-            return users.Any(x => x.UserName.ToLower() == username);
+            return usernames.Any(x => x.ToLower() == username);
         }
     }
 }

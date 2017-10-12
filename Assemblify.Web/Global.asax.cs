@@ -1,6 +1,8 @@
 ﻿using Assemblify.Data;
 using Assemblify.Data.Migrations;
 using Assemblify.Infrastructure.Mapping;
+using Assemblify.Services;
+using Assemblify.Services.Contracts;
 using Assemblify.Web;
 using Assemblify.Web.App_Start;
 using Ninject;
@@ -19,7 +21,7 @@ namespace Assemblify.Web
 {
     public class MvcApplication : HttpApplication
     {
-        protected IDependencyResolver dependencyResolver;
+        //protected IDependencyResolver dependencyResolver;
 
         protected void Application_Start()
         {
@@ -31,6 +33,9 @@ namespace Assemblify.Web
             //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MsSqlDbContext>());
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<MsSqlDbContext, Configuration>());
+
+            var cachheInitializer = new CacheInitializer();
+            cachheInitializer.Initialize();
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -1,4 +1,5 @@
-﻿using Assemblify.Web.Providers.Contracts;
+﻿using Assemblify.Common;
+using Assemblify.Web.Providers.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,17 @@ namespace Assemblify.Web.Providers
             }
 
             return (T)HttpRuntime.Cache[itemName];
+        }
+
+        // not tested
+        public T GetFromCache<T>(string itemName)
+        {
+            return (T)HttpRuntime.Cache[itemName];
+        }
+
+        public ICollection<string> GetUserNames()
+        {
+            return this.GetFromCache<ICollection<string>>(GlobalConstants.CachingUserNames);
         }
 
         public void Remove(string itemName)

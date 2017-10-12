@@ -14,5 +14,7 @@ namespace Assemblify.Common
         public const string AdministratorEmail = "admin@admin.com";
         public const string AdministratorPassword = "asdasd";
 
+        public const string CachingUserNames = "userNames";
+
     }
 }
