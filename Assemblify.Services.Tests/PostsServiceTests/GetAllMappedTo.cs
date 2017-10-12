@@ -18,14 +18,6 @@ namespace Assemblify.Services.Tests.PostsServiceTests
     [TestFixture]
     public class GetAllMappedTo
     {
-        [SetUp]
-        public void SetupMapper()
-        {
-            Mapper.Initialize(config =>
-            {
-                config.CreateMap<Post, PostMapFrom>();
-            });
-        }
 
         [Test]
         public void TestGetAllMappedTo_ShouldCallRepositoryAll()
@@ -34,6 +26,12 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             var mockedPostRepository = new Mock<IEfRepository<Post>>();
             var mockedSaveContext = new Mock<ISaveContext>();
             var mockedMapFromPost = new PostMapFrom();
+
+            
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<Post, PostMapFrom>();
+            });
 
             var service = new PostsService(mockedPostRepository.Object,
                 mockedSaveContext.Object);
@@ -54,6 +52,11 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             var mockedMapFromPost = new PostMapFrom();
 
             var titleProperty = "zaglavie";
+            
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<Post, PostMapFrom>();
+            });
 
             var postsMock = new List<Post>
             {
@@ -77,5 +80,7 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             // Assert
             Assert.AreEqual(result.FirstOrDefault().Title, titleProperty);
         }
+
+
     }
 }

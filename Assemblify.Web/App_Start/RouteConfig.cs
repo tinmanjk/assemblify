@@ -16,10 +16,10 @@ namespace Assemblify.Web
             routes.LowercaseUrls = true;
 
             routes.MapRoute(
-             name: "UserPosts",
-             url: "{username}/{action}/{postTitle}",
-             defaults: new { controller = "User", action = "UserProfile", postTitle = UrlParameter.Optional },
-            constraints: new { username = new UserNameConstraint() }
+                name: "UserPosts",
+                url: "{username}/{action}/{postTitle}",
+                defaults: new { controller = "User", action = "UserProfile", postTitle = UrlParameter.Optional },
+                constraints: new { username = new UserNameConstraint() }
             );
 
             routes.MapRoute(
@@ -27,6 +27,7 @@ namespace Assemblify.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
 
 
 
