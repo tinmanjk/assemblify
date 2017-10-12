@@ -55,7 +55,6 @@ namespace Assemblify.Infrastructure.Mapping
             foreach (var map in maps)
             {
                 map.CreateMappingsForMe(mapperConfiguration);
-                map.CreateMappingsForDestination(mapperConfiguration);
             }
         }
     }

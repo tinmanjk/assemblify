@@ -58,6 +58,10 @@ namespace Assemblify.Web.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+
+                // Service Locator DependencyResolver works without this for some reason
+                System.Web.Mvc.DependencyResolver.SetResolver(new Ninject.Web.Mvc.NinjectDependencyResolver(kernel));
+
                 return kernel;
             }
             catch

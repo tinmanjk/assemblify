@@ -9,7 +9,5 @@ namespace Assemblify.Infrastructure.Mapping
     public interface IHaveCustomMappings
     {
         void CreateMappingsForMe(IMapperConfigurationExpression configuration);
-
-        void CreateMappingsForDestination(IMapperConfigurationExpression configuration);
     }
 }

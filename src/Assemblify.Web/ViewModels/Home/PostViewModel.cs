@@ -30,13 +30,8 @@ namespace Assemblify.Web.ViewModels.Home
         {
             configuration.CreateMap<Post, PostViewModel>()
                 .ForMember(postViewModel => postViewModel.AuthorEmail, cfg => cfg.MapFrom(post => post.Author.Email))
-                .ForMember(postViewModel => postViewModel.PostedOn, cfg => cfg.MapFrom(post => post.CreatedOn));
-        }
-
-        public void CreateMappingsForDestination(IMapperConfigurationExpression configuration)
-        {
-            configuration.CreateMap<PostViewModel, Post>()
-                .ForMember(post => post.CreatedOn, cfg => cfg.MapFrom(postViewModel => postViewModel.PostedOn));
+                .ForMember(postViewModel => postViewModel.PostedOn, cfg => cfg.MapFrom(post => post.CreatedOn))
+                .ReverseMap();
         }
     }
 }

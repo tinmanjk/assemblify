@@ -36,6 +36,7 @@ namespace Assemblify.Web
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<MsSqlDbContext, Configuration>());
 
+
             var cachheInitializer = new CacheInitializer();
             cachheInitializer.Initialize();
 
