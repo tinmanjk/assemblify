@@ -21,6 +21,7 @@ namespace Assemblify.Web.App_Start
     using System.IO;
     using Providers.Contracts;
     using Providers;
+    using Routes;
 
     public static class NinjectWebCommon
     {
@@ -94,7 +95,6 @@ namespace Assemblify.Web.App_Start
             // Providers
 
             kernel.Bind<ICachingProvider>().To<HttpCachingProvider>().InRequestScope();
-            
 
             kernel.Bind<IMapper>().ToMethod(x=>Mapper.Instance).InSingletonScope();
         }

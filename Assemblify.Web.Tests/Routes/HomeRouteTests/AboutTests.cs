@@ -1,4 +1,8 @@
 ﻿using Assemblify.Web.Controllers;
+using Assemblify.Web.Providers.Contracts;
+using Assemblify.Web.Routes;
+using Assemblify.Web.Routes.Contraints;
+using Moq;
 using MvcRouteTester;
 using NUnit.Framework;
 using System;
@@ -18,9 +22,18 @@ namespace Assemblify.Web.Tests.Routes.HomeRouteTests
         {
             // Arrange 
             string url = $"/home/about";
+            var constraintsFactoryMock = new Mock<IConstraintsFactory>();
+            var cachingProviderMock = new Mock<ICachingProvider>();
+            var userNameConstraintMock = new UserNameConstraintMock(cachingProviderMock.Object);
+
+            constraintsFactoryMock
+                .Setup(x => x.CreateUserNameConstraint(cachingProviderMock.Object))
+                .Returns(userNameConstraintMock);
 
             var routeCollection = new RouteCollection();
-            RouteConfig.RegisterRoutes(routeCollection);
+            var routeConfig = new RouteConfig(constraintsFactoryMock.Object, cachingProviderMock.Object);
+
+            routeConfig.RegisterRoutes(routeCollection);
 
             // Act && Assert
             routeCollection.ShouldMap(url).To<HomeController>(c => c.About());

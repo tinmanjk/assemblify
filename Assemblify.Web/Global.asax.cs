@@ -5,6 +5,8 @@ using Assemblify.Services;
 using Assemblify.Services.Contracts;
 using Assemblify.Web;
 using Assemblify.Web.App_Start;
+using Assemblify.Web.Providers.Contracts;
+using Assemblify.Web.Routes;
 using Ninject;
 using Ninject.Web.Mvc;
 using System;
@@ -40,8 +42,8 @@ namespace Assemblify.Web
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-
+            var routeConfig = new RouteConfig();
+            routeConfig.RegisterRoutes(RouteTable.Routes);
 
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 

@@ -1,4 +1,6 @@
 ﻿using Assemblify.Services.Contracts;
+using Assemblify.Web.Providers.Contracts;
+using Assemblify.Web.Routes;
 using Assemblify.Web.Routes.Contraints;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,24 @@ namespace Assemblify.Web
 {
     public class RouteConfig
     {
-        public static void RegisterRoutes(RouteCollection routes)
+        private IConstraintsFactory constraintsFactory;
+        private ICachingProvider cachingProvider;
+
+        public RouteConfig(IConstraintsFactory constraintsFactory,
+            ICachingProvider cachingProvider)
+        {
+            this.constraintsFactory = constraintsFactory;
+            this.cachingProvider = cachingProvider;
+
+        }
+
+        public RouteConfig()
+            :this(DependencyResolver.Current.GetService<IConstraintsFactory>(), DependencyResolver.Current.GetService<ICachingProvider>())
+        {
+
+        }
+
+        public void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
@@ -21,7 +40,7 @@ namespace Assemblify.Web
                 name: "UserPosts",
                 url: "{username}/{action}/{postTitle}",
                 defaults: new { controller = "User", action = "UserProfile", postTitle = UrlParameter.Optional },
-                constraints: new { username = new UserNameConstraint() }
+                constraints: new { username = constraintsFactory.CreateUserNameConstraint(cachingProvider) }
             );
 
             routes.MapRoute(
