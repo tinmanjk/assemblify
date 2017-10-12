@@ -6,6 +6,7 @@ branches:
 build:
   verbosity: minimal
   project: src\Assemblify.sln
+  publish_azure: true
 
 before_build:
 - ps: nuget restore ./src/Assemblify.sln
