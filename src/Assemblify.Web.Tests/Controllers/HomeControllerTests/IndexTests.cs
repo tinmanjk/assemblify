@@ -20,12 +20,12 @@ namespace Assemblify.Web.Tests.Controllers.HomeControllerTests
         [Test]
         public void IndexShouldWorkCorrectly()
         {
-
+            //Arrange
             var mockedPostsService = new Mock<IPostsService>();
             var mockedIMapper = new Mock<IMapper>();
             var mockedCachingProvider = new Mock<ICachingProvider>();
 
-            // Act
+
 
             var postViewModels = new List<PostViewModel>
             {
@@ -42,20 +42,20 @@ namespace Assemblify.Web.Tests.Controllers.HomeControllerTests
             mockedPostsService.Setup(x => x.GetAllMappedTo<PostViewModel>())
                 .Returns(postViewModels);
 
+            mockedCachingProvider.Setup(x => x.Get(It.IsAny<string>(),
+                                        mockedPostsService.Object.GetAllMappedTo<PostViewModel>,
+                                        It.IsAny<int>()));
+
             var controller = new HomeController(mockedPostsService.Object, mockedIMapper.Object, mockedCachingProvider.Object);
 
-            mockedCachingProvider.Setup(x => x.Get(It.IsAny<string>(),
-                                        It.IsAny<Func<IEnumerable<PostViewModel>>>(), 
-                                        It.IsAny<int>()))
-                                   .Returns((Func<PostViewModel> captured) => { captured(); return postViewModels;
-                                   });
-
-        controller.WithCallTo(x => x.Index())
+            // Act && Assert
+            controller.WithCallTo(x => x.Index())
                 .ShouldRenderView("Index")
                 .WithModel<HomeViewModel>(
                     viewModel =>
                     {
                         Assert.AreEqual(postViewModels, viewModel.Posts);
+
                     }).AndNoModelErrors();
 
         }
