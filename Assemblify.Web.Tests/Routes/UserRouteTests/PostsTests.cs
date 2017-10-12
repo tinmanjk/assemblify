@@ -21,7 +21,7 @@ namespace Assemblify.Web.Tests.Routes.UserRouteTests
         public void UserPostsRoute_ShouldWorkCorreclty()
         {
             // Arrange 
-            string userName = "admin"; // works with constraints
+            string userName = "admisn"; // works with constraints
             string postTitle = null;
             string Url = $"/{userName}/posts";
 
