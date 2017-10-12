@@ -3,6 +3,8 @@ using Assemblify.Data.Migrations;
 using Assemblify.Infrastructure.Mapping;
 using Assemblify.Web;
 using Assemblify.Web.App_Start;
+using Ninject;
+using Ninject.Web.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -17,6 +19,8 @@ namespace Assemblify.Web
 {
     public class MvcApplication : HttpApplication
     {
+        protected IDependencyResolver dependencyResolver;
+
         protected void Application_Start()
         {
             // bez WebForms
@@ -30,7 +34,10 @@ namespace Assemblify.Web
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             var mapper = new AutoMapperConfig();

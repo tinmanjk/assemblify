@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Assemblify.Services.Contracts;
+using Assemblify.Web.Routes.Contraints;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,22 +29,8 @@ namespace Assemblify.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-
-
-
-
         }
 
-        public class UserNameConstraint : IRouteConstraint
-        {
-            public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
-            {
-                List<string> users = new List<string>() { "admin", "pesho" };
-                // Get the username from the url
-                var username = values["username"].ToString().ToLower();
-                // Check for a match (assumes case insensitive)
-                return users.Any(x => x.ToLower() == username);
-            }
-        }
+
     }
 }

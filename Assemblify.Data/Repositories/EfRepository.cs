@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Assemblify.Data.Repositories
 {
-    public class EfRepository<T> : IEfRepository<T> where T : class, IDataModel
+    public class EfRepository<T> : IEfRepository<T> where T : class, IDeletable, IAuditable
     {
         private readonly MsSqlDbContext context;
         private readonly DbSet<T> dbSet;

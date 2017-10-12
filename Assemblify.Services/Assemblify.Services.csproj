@@ -57,8 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IUsersService.cs" />
     <Compile Include="Contracts\IPostsService.cs" />
     <Compile Include="Contracts\IService.cs" />
+    <Compile Include="UsersService.cs" />
     <Compile Include="PostsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
