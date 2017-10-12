@@ -85,7 +85,8 @@ namespace Assemblify.Web.App_Start
             {
                 x.FromAssemblyContaining(typeof(IService))
                  .SelectAllClasses()
-                 .BindDefaultInterface();
+                 .BindDefaultInterface()
+                 .Configure(s => s.InRequestScope());
             });
 
             kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
