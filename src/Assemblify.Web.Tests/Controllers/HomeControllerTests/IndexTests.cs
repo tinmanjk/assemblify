@@ -23,7 +23,7 @@ namespace Assemblify.Web.Tests.Controllers.HomeControllerTests
             //Arrange
             var mockedPostsService = new Mock<IPostsService>();
             var mockedIMapper = new Mock<IMapper>();
-            var mockedCachingProvider = new Mock<ICachingProvider>();
+            var mockedCachingProvider = new Mock<IHttpCachingProvider>();
 
 
 

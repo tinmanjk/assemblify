@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Assemblify.Web.Providers.Contracts
 {
-    public interface ICachingProvider
+    public interface IHttpCachingProvider
     {
         T GetOrAdd<T>(string cacheId, Func<T> getDataFunc, int durationInSeconds);
         T GetOrAdd<T>(string cacheId, Func<T> getDataCallBack);

@@ -13,16 +13,16 @@ namespace Assemblify.Web.Routes.Contraints
     public class UserNameConstraint : IRouteConstraint
     {
 
-        private ICachingProvider cachingProvider;
+        private IHttpCachingProvider cachingProvider;
         private IUsersService usersService;
 
         public UserNameConstraint()
-        : this(DependencyResolver.Current.GetService<ICachingProvider>(),
+        : this(DependencyResolver.Current.GetService<IHttpCachingProvider>(),
               DependencyResolver.Current.GetService<IUsersService>())
         {
         }
 
-        public UserNameConstraint(ICachingProvider cachingProvider, IUsersService usersService)
+        public UserNameConstraint(IHttpCachingProvider cachingProvider, IUsersService usersService)
         {
             this.cachingProvider = cachingProvider;
             this.usersService = usersService;

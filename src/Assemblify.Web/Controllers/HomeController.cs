@@ -16,11 +16,11 @@ namespace Assemblify.Web.Controllers
     {
         private readonly IPostsService postsService;
         private readonly IMapper mapper;
-        private readonly ICachingProvider cachingProvider;
+        private readonly IHttpCachingProvider cachingProvider;
 
         public HomeController(IPostsService postsService,
             IMapper mapper,
-            ICachingProvider cachingProvider)
+            IHttpCachingProvider cachingProvider)
         {
             if (postsService == null)
             {

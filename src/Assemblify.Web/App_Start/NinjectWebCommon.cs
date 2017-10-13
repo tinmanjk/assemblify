@@ -97,9 +97,14 @@ namespace Assemblify.Web.App_Start
             kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
             kernel.Bind<ISaveContext>().To<SaveContext>();
 
-            // Providers
-
-            kernel.Bind<ICachingProvider>().To<HttpCachingProvider>().InRequestScope();
+            // Web Providers
+            kernel.Bind(x =>
+            {
+                x.FromAssemblyContaining(typeof(IProvider))
+                 .SelectAllClasses()
+                 .BindDefaultInterface()
+                 .Configure(s => s.InRequestScope());
+            });
 
             kernel.Bind<IMapper>().ToMethod(x=>Mapper.Instance).InSingletonScope();
         }

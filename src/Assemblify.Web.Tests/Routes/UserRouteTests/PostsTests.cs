@@ -27,7 +27,7 @@ namespace Assemblify.Web.Tests.Routes.UserRouteTests
             string Url = $"/{userName}/posts";
 
             var constraintsFactoryMock = new Mock<IConstraintsFactory>();
-            var cachingProviderMock = new Mock<ICachingProvider>();
+            var cachingProviderMock = new Mock<IHttpCachingProvider>();
             var usersServiceMock = new Mock<IUsersService>();
             var userNameConstraintMock = new UserNameConstraintMock();
 

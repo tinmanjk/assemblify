@@ -11,17 +11,17 @@ namespace Assemblify.Web.App_Start
 {
     public class CacheInitializer
     {
-        private ICachingProvider cachingProvider;
+        private IHttpCachingProvider cachingProvider;
         private IUsersService usersService;
 
-        public CacheInitializer(ICachingProvider cachingProvider, IUsersService usersService)
+        public CacheInitializer(IHttpCachingProvider cachingProvider, IUsersService usersService)
         {
             this.cachingProvider = cachingProvider;
             this.usersService = usersService;
         }
         
         public CacheInitializer():
-            this(DependencyResolver.Current.GetService<ICachingProvider>(), 
+            this(DependencyResolver.Current.GetService<IHttpCachingProvider>(), 
                 DependencyResolver.Current.GetService<IUsersService>())
         {
 

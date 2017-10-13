@@ -10,7 +10,7 @@ using System.Web.Caching;
 
 namespace Assemblify.Web.Providers
 {
-    public class HttpCachingProvider: ICachingProvider
+    public class HttpCachingProvider: IHttpCachingProvider
     {
         private static readonly object LockObject = new object();
 
