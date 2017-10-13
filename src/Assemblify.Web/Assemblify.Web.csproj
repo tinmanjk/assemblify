@@ -374,8 +374,8 @@
     <Content Include="Views\User\Posts.cshtml" />
     <Content Include="Views\User\DisplayTemplates\UserPostsViewModel.cshtml" />
     <Content Include="Views\Shared\_PostUserPostDetailsPartial.cshtml" />
-    <Content Include="Views\Shared\_NewPostPartial.cshtml" />
     <Content Include="Views\Post\Create.cshtml" />
+    <Content Include="Views\Shared\_NavigationPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

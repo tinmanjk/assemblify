@@ -8,8 +8,7 @@ namespace Assemblify.Web.Constants
     public class PartialViews
     {
         public const string LoginPartial = "_LoginPartial";
-        public const string NewPostPartial = "_NewPostPartial";
-
+        public const string NavigationPartial = "_NavigationPartial";
 
     }
 }
