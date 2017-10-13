@@ -9,8 +9,11 @@ namespace Assemblify.Web.Providers.Contracts
 {
     public interface ICachingProvider
     {
-        T Get<T>(string itemName, Func<T> getDataFunc, int durationInSeconds);
-        ICollection<string> GetUserNames();
+        T GetOrAdd<T>(string cacheId, Func<T> getDataFunc, int durationInSeconds);
+        T GetOrAdd<T>(string cacheId, Func<T> getDataCallBack);
+
+
+        //ICollection<string> GetUserNames();
 
         void Remove(string itemName);
     }

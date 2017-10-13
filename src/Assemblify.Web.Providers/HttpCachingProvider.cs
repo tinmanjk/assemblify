@@ -14,17 +14,41 @@ namespace Assemblify.Web.Providers
     {
         private static readonly object LockObject = new object();
 
-        public T Get<T>(string itemName, Func<T> getDataFunc, int durationInSeconds)
+        // overload without duration
+        public T GetOrAdd<T>(string cacheId, Func<T> getDataCallBack)
         {
-            if (HttpRuntime.Cache[itemName] == null)
+            if (HttpRuntime.Cache[cacheId] == null)
             {
                 lock (LockObject)
                 {
-                    if (HttpRuntime.Cache[itemName] == null)
+                    if (HttpRuntime.Cache[cacheId] == null)
                     {
-                        var data = getDataFunc();
+                        var data = getDataCallBack();
                         HttpRuntime.Cache.Insert(
-                            itemName,
+                            cacheId,
+                            data,
+                            null,
+                            Cache.NoAbsoluteExpiration,
+                            Cache.NoSlidingExpiration);
+                    }
+                }
+            }
+
+            return (T)HttpRuntime.Cache[cacheId];
+        }
+
+        public T GetOrAdd<T>(string cachedId, Func<T> getDataCallBack, int durationInSeconds)
+        {
+
+            if (HttpRuntime.Cache[cachedId] == null)
+            {
+                lock (LockObject)
+                {
+                    if (HttpRuntime.Cache[cachedId] == null)
+                    {
+                        var data = getDataCallBack();
+                        HttpRuntime.Cache.Insert(
+                            cachedId,
                             data,
                             null,
                             DateTime.UtcNow.AddSeconds(durationInSeconds),
@@ -33,18 +57,7 @@ namespace Assemblify.Web.Providers
                 }
             }
 
-            return (T)HttpRuntime.Cache[itemName];
-        }
-
-        // not tested
-        public T GetFromCache<T>(string itemName)
-        {
-            return (T)HttpRuntime.Cache[itemName];
-        }
-
-        public ICollection<string> GetUserNames()
-        {
-            return this.GetFromCache<ICollection<string>>(GlobalConstants.CachingUserNames);
+            return (T)HttpRuntime.Cache[cachedId];
         }
 
         public void Remove(string itemName)

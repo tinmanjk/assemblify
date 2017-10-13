@@ -29,5 +29,13 @@ namespace Assemblify.Services
                 .All
                 .ToList();
         }
+
+        public IEnumerable<string> GetAllUserNames()
+        {
+            return this.usersRepo
+                .All
+                .Select(x=>x.UserName)
+                .ToList();
+        }
     }
 }

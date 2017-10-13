@@ -15,17 +15,22 @@ namespace Assemblify.Web
     {
         private IConstraintsFactory constraintsFactory;
         private ICachingProvider cachingProvider;
+        private IUsersService usersService;
 
         public RouteConfig(IConstraintsFactory constraintsFactory,
-            ICachingProvider cachingProvider)
+            ICachingProvider cachingProvider,
+            IUsersService usersService)
         {
             this.constraintsFactory = constraintsFactory;
             this.cachingProvider = cachingProvider;
+            this.usersService = usersService;
 
         }
 
         public RouteConfig()
-            :this(DependencyResolver.Current.GetService<IConstraintsFactory>(), DependencyResolver.Current.GetService<ICachingProvider>())
+            :this(DependencyResolver.Current.GetService<IConstraintsFactory>(), 
+                 DependencyResolver.Current.GetService<ICachingProvider>(),
+                 DependencyResolver.Current.GetService<IUsersService>())
         {
 
         }
@@ -40,7 +45,7 @@ namespace Assemblify.Web
                 name: "UserPosts",
                 url: "{username}/{action}/{postTitle}",
                 defaults: new { controller = "User", action = "UserProfile", postTitle = UrlParameter.Optional },
-                constraints: new { username = constraintsFactory.CreateUserNameConstraint(cachingProvider) }
+                constraints: new { username = constraintsFactory.CreateUserNameConstraint(this.cachingProvider,this.usersService) }
             );
 
             routes.MapRoute(

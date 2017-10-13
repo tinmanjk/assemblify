@@ -21,7 +21,8 @@ namespace Assemblify.Web.App_Start
         }
         
         public CacheInitializer():
-            this(DependencyResolver.Current.GetService<ICachingProvider>(), DependencyResolver.Current.GetService<IUsersService>())
+            this(DependencyResolver.Current.GetService<ICachingProvider>(), 
+                DependencyResolver.Current.GetService<IUsersService>())
         {
 
         }
@@ -33,11 +34,9 @@ namespace Assemblify.Web.App_Start
 
         public void GenerateUsersCache()
         {
-            this.cachingProvider.Get(GlobalConstants.CachingUserNames, () => this.usersService
-                                    .GetAll()
-                                    .Select(x => x.UserName)
-                                    .ToList(), 60 * 60);
-
+            this.cachingProvider.GetOrAdd(GlobalConstants.CachingUserNames, 
+                () => this.usersService.GetAllUserNames());
+            
         }
     }
 }

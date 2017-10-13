@@ -5,14 +5,15 @@ using System.Web;
 using System.Web.Routing;
 using Assemblify.Web.Providers.Contracts;
 using Assemblify.Web.Routes.Contraints;
+using Assemblify.Services.Contracts;
 
 namespace Assemblify.Web.Routes
 {
     public class ConstraintsFactory : IConstraintsFactory
     {
-        public IRouteConstraint CreateUserNameConstraint(ICachingProvider cachingProvider)
+        public IRouteConstraint CreateUserNameConstraint(ICachingProvider cachingProvider, IUsersService usersService)
         {
-            return new UserNameConstraint(cachingProvider);
+            return new UserNameConstraint(cachingProvider, usersService);
         }
     }
 }

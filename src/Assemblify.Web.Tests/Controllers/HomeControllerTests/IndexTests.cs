@@ -42,7 +42,7 @@ namespace Assemblify.Web.Tests.Controllers.HomeControllerTests
             mockedPostsService.Setup(x => x.GetAllMappedTo<PostViewModel>())
                 .Returns(postViewModels);
 
-            mockedCachingProvider.Setup(x => x.Get(It.IsAny<string>(),
+            mockedCachingProvider.Setup(x => x.GetOrAdd(It.IsAny<string>(),
                                         mockedPostsService.Object.GetAllMappedTo<PostViewModel>,
                                         It.IsAny<int>()));
 
