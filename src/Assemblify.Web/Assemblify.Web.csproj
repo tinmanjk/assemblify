@@ -248,6 +248,7 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -359,6 +360,7 @@
     <Content Include="Views\Shared\DisplayTemplates\PostViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_TODO_PostViewModel.cshtml" />
     <Content Include="Views\Home\DisplayTemplates\PostViewModelWithoutInjection.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
     <None Include="Views\Home\DisplayTemplates\PostViewModelWithInjection.cshtml" />
     <Content Include="Views\Home\SessionExample.cshtml" />
     <Content Include="Views\Home\TempExample.cshtml" />
