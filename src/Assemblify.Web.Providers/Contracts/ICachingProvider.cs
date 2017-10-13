@@ -12,9 +12,9 @@ namespace Assemblify.Web.Providers.Contracts
         T GetOrAdd<T>(string cacheId, Func<T> getDataFunc, int durationInSeconds);
         T GetOrAdd<T>(string cacheId, Func<T> getDataCallBack);
 
+        void Update<T>(string cacheId, Func<T> getDataCallBack);
+        
 
-        //ICollection<string> GetUserNames();
-
-        void Remove(string itemName);
+        void Remove(string cacheId);
     }
 }

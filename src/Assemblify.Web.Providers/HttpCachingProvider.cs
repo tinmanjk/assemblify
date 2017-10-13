@@ -37,18 +37,18 @@ namespace Assemblify.Web.Providers
             return (T)HttpRuntime.Cache[cacheId];
         }
 
-        public T GetOrAdd<T>(string cachedId, Func<T> getDataCallBack, int durationInSeconds)
+        public T GetOrAdd<T>(string cacheId, Func<T> getDataCallBack, int durationInSeconds)
         {
 
-            if (HttpRuntime.Cache[cachedId] == null)
+            if (HttpRuntime.Cache[cacheId] == null)
             {
                 lock (LockObject)
                 {
-                    if (HttpRuntime.Cache[cachedId] == null)
+                    if (HttpRuntime.Cache[cacheId] == null)
                     {
                         var data = getDataCallBack();
                         HttpRuntime.Cache.Insert(
-                            cachedId,
+                            cacheId,
                             data,
                             null,
                             DateTime.UtcNow.AddSeconds(durationInSeconds),
@@ -57,12 +57,19 @@ namespace Assemblify.Web.Providers
                 }
             }
 
-            return (T)HttpRuntime.Cache[cachedId];
+            return (T)HttpRuntime.Cache[cacheId];
         }
 
-        public void Remove(string itemName)
+        public void Update<T>(string cacheId, Func<T> getDataCallBack)
         {
-            HttpRuntime.Cache.Remove(itemName);
+            this.Remove(cacheId);
+            this.GetOrAdd(cacheId, getDataCallBack);
+
+        }
+
+        public void Remove(string cacheId)
+        {
+            HttpRuntime.Cache.Remove(cacheId);
         }
     }
 }
