@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Assemblify.Data.Models;
 using Microsoft.AspNet.Identity.Owin;
+using Assemblify.Web.Providers.Managers;
 
 namespace Assemblify.Web.Providers
 {
@@ -25,18 +26,18 @@ namespace Assemblify.Web.Providers
             this.httpContextProvider = httpContextProvider;
         }
 
-        protected SignInManager<User, string> SignInManager
+        protected ApplicationSignInManager SignInManager
         {
             get
             {
-                return this.httpContextProvider.GetUserManager<SignInManager<User,string>>();
+                return this.httpContextProvider.GetUserManager<ApplicationSignInManager>();
             }
         }
-        protected UserManager<User> UserManager
+        protected ApplicationUserManager UserManager
         {
             get
             {
-                return this.httpContextProvider.GetUserManager<UserManager<User>>();
+                return this.httpContextProvider.GetUserManager<ApplicationUserManager>();
             }
         }
 
@@ -89,6 +90,11 @@ namespace Assemblify.Web.Providers
         public bool IsInRole(string userId, string roleName)
         {
             return userId != null && this.UserManager.IsInRole(userId, roleName);
+        }
+
+        public IdentityResult AddToRole(string userId, string roleName)
+        {
+            return this.UserManager.AddToRole(userId, roleName);
         }
     }
 }

@@ -21,5 +21,7 @@ namespace Assemblify.Web.Providers.Contracts
 
         bool IsInRole(string userId, string roleName);
 
+        IdentityResult AddToRole(string userId, string roleName);
+
     }
 }

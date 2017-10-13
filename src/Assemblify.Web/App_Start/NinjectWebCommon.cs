@@ -102,8 +102,7 @@ namespace Assemblify.Web.App_Start
             {
                 x.FromAssemblyContaining(typeof(IProvider))
                  .SelectAllClasses()
-                 .BindDefaultInterface()
-                 .Configure(s => s.InRequestScope());
+                 .BindDefaultInterface();
             });
 
             kernel.Bind<IMapper>().ToMethod(x=>Mapper.Instance).InSingletonScope();
