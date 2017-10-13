@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Assemblify.Data.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Assemblify.Web.Providers.Managers;
+using System.Web.Hosting;
 
 namespace Assemblify.Web.Providers
 {
@@ -33,7 +34,9 @@ namespace Assemblify.Web.Providers
                 return this.httpContextProvider.GetUserManager<ApplicationSignInManager>();
             }
         }
-        protected ApplicationUserManager UserManager
+
+        // to be switched to protected
+        public ApplicationUserManager UserManager
         {
             get
             {
@@ -75,6 +78,12 @@ namespace Assemblify.Web.Providers
             }
 
             return result;
+        }
+
+        public IdentityResult ChangePassword(string userId, string currentPassword, string newPassword)
+        {
+            return this.UserManager.ChangePassword(userId, currentPassword, newPassword);
+
         }
 
         public SignInStatus SignInWithPassword(string email, string password, bool rememberMe, bool shouldLockout)

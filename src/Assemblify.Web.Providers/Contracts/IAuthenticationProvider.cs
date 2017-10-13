@@ -1,7 +1,8 @@
 ﻿using Assemblify.Data.Models;
+using Assemblify.Web.Providers.Managers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-
+using System.Web.Hosting;
 
 namespace Assemblify.Web.Providers.Contracts
 {
@@ -22,6 +23,9 @@ namespace Assemblify.Web.Providers.Contracts
         bool IsInRole(string userId, string roleName);
 
         IdentityResult AddToRole(string userId, string roleName);
+        IdentityResult ChangePassword(string userId, string currentPassword, string newPassword);
+
+        //ApplicationUserManager UserManager { get; }
 
     }
 }
