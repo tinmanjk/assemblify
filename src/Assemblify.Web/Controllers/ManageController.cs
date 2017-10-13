@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Assemblify.Web.ViewModels;
 using Assemblify.Web.ViewModels.Manage;
+using Assemblify.Web.Providers.Managers;
 
 namespace Assemblify.Web.Controllers
 {

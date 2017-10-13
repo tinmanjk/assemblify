@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using Assemblify.Data;
 using Assemblify.Data.Models;
+using Assemblify.Web.Providers.Managers;
 
 namespace Assemblify.Web
 {

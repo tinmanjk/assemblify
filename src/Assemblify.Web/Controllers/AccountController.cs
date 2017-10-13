@@ -12,6 +12,7 @@ using Assemblify.Web.ViewModels;
 using Assemblify.Data.Models;
 using Assemblify.Web.ViewModels.Account;
 using Assemblify.Common;
+using Assemblify.Web.Providers.Managers;
 
 namespace Assemblify.Web.Controllers
 {
