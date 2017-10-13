@@ -1,0 +1,9 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("New Post", "Create", "Post", routeValues: null, htmlAttributes: new { title = "Create New Post" })
+        </li>
+    </ul>
+}

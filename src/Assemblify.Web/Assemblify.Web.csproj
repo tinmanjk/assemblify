@@ -252,10 +252,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
+    <Compile Include="Constants\PartialViews.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
@@ -372,12 +374,13 @@
     <Content Include="Views\User\Posts.cshtml" />
     <Content Include="Views\User\DisplayTemplates\UserPostsViewModel.cshtml" />
     <Content Include="Views\Shared\_PostUserPostDetailsPartial.cshtml" />
+    <Content Include="Views\Shared\_NewPostPartial.cshtml" />
+    <Content Include="Views\Post\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Contants\PartialViews\" />
-    <Folder Include="Contants\Views\" />
+    <Folder Include="ViewModels\Post\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
