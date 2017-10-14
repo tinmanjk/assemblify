@@ -9,6 +9,18 @@ namespace Assemblify.Data.Models
 {
     public class Post : DataModel
     {
+        public Post(string title, string content, User author)
+        {
+            this.Title = title;
+            this.Content = content;
+            this.Author = author;
+        }
+
+        public Post()
+        {
+
+        }
+
         public string Title { get; set; }
 
         public string Content { get; set; }

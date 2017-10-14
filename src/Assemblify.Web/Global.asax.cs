@@ -1,5 +1,6 @@
 ﻿using Assemblify.Data;
 using Assemblify.Data.Migrations;
+using Assemblify.Data.Models;
 using Assemblify.Infrastructure.Mapping;
 using Assemblify.Services;
 using Assemblify.Services.Contracts;
@@ -35,7 +36,6 @@ namespace Assemblify.Web
             //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MsSqlDbContext>());
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<MsSqlDbContext, Configuration>());
-
 
             var cachheInitializer = new CacheInitializer();
             cachheInitializer.Initialize();

@@ -25,6 +25,7 @@ namespace Assemblify.Web.App_Start
     using Infrastructure.Providers.Contracts;
     using Infrastructure.Factories;
     using Ninject.Extensions.Factory;
+    using Data.Models.Abstracts;
 
     public static class NinjectConfig
     {
@@ -85,6 +86,14 @@ namespace Assemblify.Web.App_Start
                 x.FromThisAssembly()
                  .SelectAllClasses()
                  .BindDefaultInterface();
+            });
+
+            // Data Models
+            kernel.Bind(x =>
+            {
+                x.FromAssemblyContaining(typeof(DataModel))
+                 .SelectAllClasses()
+                 .BindToSelf();
             });
 
             // Services

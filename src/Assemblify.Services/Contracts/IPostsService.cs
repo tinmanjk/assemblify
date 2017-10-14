@@ -14,7 +14,7 @@ namespace Assemblify.Services.Contracts
 
         bool PostExists();
 
-        bool CreatePost(Post post);
+        Post CreatePost(string title, string content, string userId);
 
         void Update(Post post);
 

@@ -9,7 +9,7 @@ namespace Assemblify.Infrastructure.Factories
 {
     public interface IPostFactory
     {
-        Post CreatePost(string title, string description, User user);
+        Post CreatePost(string title, string content, User author);
 
     }
 }

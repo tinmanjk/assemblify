@@ -1,7 +1,9 @@
 ﻿using Assemblify.Data.Models;
 using Assemblify.Data.Repositories;
 using Assemblify.Data.SaveContext;
+using Assemblify.Infrastructure.Factories;
 using Assemblify.Services;
+using Assemblify.Services.Contracts;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -21,9 +23,13 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             // Arrange
             var mockedPostRepository = new Mock<IEfRepository<Post>>();
             var mockedSaveContext = new Mock<ISaveContext>();
+            var mockedPostFactory = new Mock<IPostFactory>();
+            var mockedUsersService = new Mock<IUsersService>();
 
             var service = new PostsService(mockedPostRepository.Object,
-                mockedSaveContext.Object);
+                mockedSaveContext.Object,
+                mockedPostFactory.Object,
+                mockedUsersService.Object);
 
             // Act
             service.GetAll();

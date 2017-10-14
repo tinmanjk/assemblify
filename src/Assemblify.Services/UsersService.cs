@@ -23,6 +23,11 @@ namespace Assemblify.Services
             this.context = context;
         }
 
+        public User GetUserById(string id)
+        {
+            return this.usersRepo.GetById(id);
+        }
+
         public IEnumerable<User> GetAll()
         {
             return this.usersRepo

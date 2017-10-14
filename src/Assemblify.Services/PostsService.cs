@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assemblify.Infrastructure.Mapping;
+using Assemblify.Infrastructure.Factories;
 
 namespace Assemblify.Services
 {
@@ -15,12 +16,18 @@ namespace Assemblify.Services
     {
         private readonly IEfRepository<Post> postsRepo;
         private readonly ISaveContext context;
+        private readonly IUsersService usersService;
+        private readonly IPostFactory postFactory;
 
         public PostsService(IEfRepository<Post> postsRepo,
-            ISaveContext context)
+            ISaveContext context,
+            IPostFactory postFactory,
+            IUsersService usersService)
         {
             this.postsRepo = postsRepo;
             this.context = context;
+            this.postFactory = postFactory;
+            this.usersService = usersService;
 
         }
 
@@ -43,7 +50,7 @@ namespace Assemblify.Services
         public void Update(Post post)
         {
             this.postsRepo.Update(post);
-            this.context.Commit();         
+            this.context.Commit();
         }
 
         public bool PostExists()
@@ -51,9 +58,24 @@ namespace Assemblify.Services
             throw new NotImplementedException();
         }
 
-        public bool CreatePost(Post post)
+        public Post CreatePost(string title, string content, string userId)
         {
-            throw new NotImplementedException();
+            var user = this.usersService.GetUserById(userId);
+            var post = this.postFactory.CreatePost(title, content, user);
+
+            this.postsRepo.Add(post);
+            try
+            {
+
+                this.context.Commit();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return post;        
         }
 
         public IEnumerable<TDest> GetPostsByUserNameMappedTo<TDest>(string userName) where TDest : IMapFrom<Post>

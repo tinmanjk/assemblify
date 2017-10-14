@@ -1,7 +1,9 @@
 ﻿using Assemblify.Data.Models;
 using Assemblify.Data.Repositories;
 using Assemblify.Data.SaveContext;
+using Assemblify.Infrastructure.Factories;
 using Assemblify.Infrastructure.Mapping;
+using Assemblify.Services.Contracts;
 using Assemblify.Services.Tests.PostsServiceTests.Mocks;
 using Assemblify.Web.Controllers;
 using AutoMapper;
@@ -25,16 +27,19 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             // Arrange
             var mockedPostRepository = new Mock<IEfRepository<Post>>();
             var mockedSaveContext = new Mock<ISaveContext>();
+            var mockedPostFactory = new Mock<IPostFactory>();
+            var mockedUsersService = new Mock<IUsersService>();
+
             var mockedMapFromPost = new PostMapFrom();
 
-            
+
             Mapper.Initialize(config =>
             {
                 config.CreateMap<Post, PostMapFrom>();
             });
 
             var service = new PostsService(mockedPostRepository.Object,
-                mockedSaveContext.Object);
+                mockedSaveContext.Object, mockedPostFactory.Object, mockedUsersService.Object);
 
             // Act
             service.GetAllMappedTo<PostMapFrom>();
@@ -50,9 +55,12 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             var mockedPostRepository = new Mock<IEfRepository<Post>>();
             var mockedSaveContext = new Mock<ISaveContext>();
             var mockedMapFromPost = new PostMapFrom();
+            var mockedPostFactory = new Mock<IPostFactory>();
+            var mockedUsersService = new Mock<IUsersService>();
+
 
             var titleProperty = "zaglavie";
-            
+
             Mapper.Initialize(config =>
             {
                 config.CreateMap<Post, PostMapFrom>();
@@ -71,7 +79,7 @@ namespace Assemblify.Services.Tests.PostsServiceTests
 
 
             var service = new PostsService(mockedPostRepository.Object,
-                mockedSaveContext.Object);
+                mockedSaveContext.Object, mockedPostFactory.Object, mockedUsersService.Object);
 
             // Act
 

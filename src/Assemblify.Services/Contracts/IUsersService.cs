@@ -9,5 +9,6 @@ namespace Assemblify.Services.Contracts
     {
         IEnumerable<User> GetAll();
         IEnumerable<string> GetAllUserNames();
+        User GetUserById(string id);
     }
 }
