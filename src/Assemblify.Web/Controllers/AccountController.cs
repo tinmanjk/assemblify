@@ -115,7 +115,7 @@ namespace Assemblify.Web.Controllers
         public ActionResult LogOff()
         {
             this.authenticationProvider.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index","Home", new { area = "" });
         }
 
         private void AddErrors(IdentityResult result)
