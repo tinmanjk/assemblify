@@ -268,14 +268,8 @@
     <Compile Include="Routes\ConstraintsFactory.cs" />
     <Compile Include="Routes\Contraints\UserNameConstraint.cs" />
     <Compile Include="Routes\IConstraintsFactory.cs" />
-    <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
-    <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
-    <Compile Include="ViewModels\Account\ForgotViewModel.cs" />
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
-    <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
-    <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\Home\HomeViewModel.cs" />
     <Compile Include="ViewModels\Home\PostSearchViewModel.cs" />
     <Compile Include="ViewModels\Home\PostViewModel.cs" />
@@ -328,7 +322,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
