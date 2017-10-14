@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\IPostFactory.cs" />
+    <Compile Include="Factories\IUserFactory.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />
@@ -53,7 +55,12 @@
     <Compile Include="Providers\Contracts\IDateTimeProvider.cs" />
     <Compile Include="Providers\DateTimeProvider.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Assemblify.Data.Models\Assemblify.Data.Models.csproj">
+      <Project>{769F8F44-21F2-4374-997E-3DF923DCA05D}</Project>
+      <Name>Assemblify.Data.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

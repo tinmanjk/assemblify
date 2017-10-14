@@ -23,6 +23,8 @@ namespace Assemblify.Web.App_Start
     using Providers;
     using Routes;
     using Infrastructure.Providers.Contracts;
+    using Infrastructure.Factories;
+    using Ninject.Extensions.Factory;
 
     public static class NinjectConfig
     {
@@ -109,6 +111,10 @@ namespace Assemblify.Web.App_Start
                  .SelectAllClasses()
                  .BindDefaultInterface();
             });
+
+            // Factories
+            kernel.Bind<IPostFactory>().ToFactory().InSingletonScope();
+            kernel.Bind<IUserFactory>().ToFactory().InSingletonScope();
 
             kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
             kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
