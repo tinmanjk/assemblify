@@ -88,7 +88,7 @@ namespace Assemblify.Web.App_Start
                  .BindDefaultInterface();
             });
 
-            // Data Models
+            // Data Models for Factories
             kernel.Bind(x =>
             {
                 x.FromAssemblyContaining(typeof(DataModel))

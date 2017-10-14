@@ -31,6 +31,14 @@ namespace Assemblify.Data.Repositories
             return item;
         }
 
+        public T GetByIdAndDeleted(object id)
+        {
+            var item = this.dbSet.Find(id);
+
+            return item;
+        }
+
+
         public IQueryable<T> All
         {
             get
@@ -68,6 +76,11 @@ namespace Assemblify.Data.Repositories
 
             var entry = this.context.Entry(entity);
             entry.State = EntityState.Modified;
+        }
+
+        public void HardDelete(T entity)
+        {
+            this.dbSet.Remove(entity);
         }
 
         public void Update(T entity)

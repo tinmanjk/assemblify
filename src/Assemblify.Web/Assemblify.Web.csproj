@@ -262,6 +262,8 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\PostController.cs" />
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Post\PostDeleteViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Post\PostEditViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Post\PostCreateViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Post\PostListViewModel.cs" />
     <Compile Include="Constants\PartialViews.cs" />
@@ -271,6 +273,7 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\AdministrationAreaAuthorizationFilter.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

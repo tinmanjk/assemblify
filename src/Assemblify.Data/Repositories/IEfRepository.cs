@@ -9,8 +9,11 @@ namespace Assemblify.Data.Repositories
         IQueryable<T> AllAndDeleted { get; }
 
         T GetById(object id);
+        T GetByIdAndDeleted(object id);
+
         void Add(T entity);
         void Delete(T entity);
+        void HardDelete(T entity);
         void Update(T entity);
     }
 }

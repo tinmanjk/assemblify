@@ -1,4 +1,4 @@
-﻿@model Assemblify.Data.Models.Post
+﻿@model Assemblify.Web.Areas.Administration.ViewModels.Post.PostDeleteViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -11,6 +11,15 @@
     <h4>Post</h4>
     <hr />
     <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorUserName)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
@@ -41,22 +50,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.CreatedOn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedOn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedOn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedOn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedOn)
         </dd>
 
     </dl>

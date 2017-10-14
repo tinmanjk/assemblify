@@ -9,22 +9,18 @@
     using System.Web.Mvc;
     using AutoMapper;
 
-    public class PostListViewModel: IMapFrom<Post>
+    public class PostDeleteViewModel : IMapFrom<Post>
     {
         public string Title { get; set; }
 
         public string Content { get; set; }
 
-        public string AuthorUserName { get; set; }
+        public bool IsDeleted { get; set; }
 
         public Guid Id { get; set; }
 
-        public bool IsDeleted { get; set; }
-
         public DateTime CreatedOn { get; set; }
 
-        public DateTime? ModifiedOn { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
+        public string AuthorUserName { get; set; }
     }
 }
