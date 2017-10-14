@@ -94,7 +94,7 @@
     <Compile Include="Contracts\IAuthenticationProvider.cs" />
     <Compile Include="Contracts\IHttpCachingProvider.cs" />
     <Compile Include="Contracts\IHttpContextProvider.cs" />
-    <Compile Include="Contracts\IProvider.cs" />
+    <Compile Include="Contracts\IWebProviderNinjectRegistry.cs" />
     <Compile Include="HttpCachingProvider.cs" />
     <Compile Include="HttpContextProvider.cs" />
     <Compile Include="Managers\ApplicationSignInManager.cs" />

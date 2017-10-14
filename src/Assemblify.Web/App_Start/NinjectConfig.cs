@@ -1,5 +1,5 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Assemblify.Web.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Assemblify.Web.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Assemblify.Web.App_Start.NinjectConfig), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Assemblify.Web.App_Start.NinjectConfig), "Stop")]
 
 namespace Assemblify.Web.App_Start
 {
@@ -22,8 +22,9 @@ namespace Assemblify.Web.App_Start
     using Providers.Contracts;
     using Providers;
     using Routes;
+    using Infrastructure.Providers.Contracts;
 
-    public static class NinjectWebCommon
+    public static class NinjectConfig
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
@@ -84,26 +85,34 @@ namespace Assemblify.Web.App_Start
                  .BindDefaultInterface();
             });
 
-            // Services bind
+            // Services
             kernel.Bind(x =>
             {
-                x.FromAssemblyContaining(typeof(IService))
+                x.FromAssemblyContaining(typeof(IServiceNinjectRegistry))
                  .SelectAllClasses()
                  .BindDefaultInterface()
                  .Configure(s => s.InRequestScope());
             });
 
-            kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
-            kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
-            kernel.Bind<ISaveContext>().To<SaveContext>();
-
             // Web Providers
             kernel.Bind(x =>
             {
-                x.FromAssemblyContaining(typeof(IProvider))
+                x.FromAssemblyContaining(typeof(IWebProviderNinjectRegistry))
                  .SelectAllClasses()
                  .BindDefaultInterface();
             });
+
+            // Infrastructure Providers
+            kernel.Bind(x =>
+            {
+                x.FromAssemblyContaining(typeof(IInfrastructureProviderNinjectRegistry))
+                 .SelectAllClasses()
+                 .BindDefaultInterface();
+            });
+
+            kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
+            kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
+            kernel.Bind<ISaveContext>().To<SaveContext>();
 
             kernel.Bind<IMapper>().ToMethod(x=>Mapper.Instance).InSingletonScope();
         }

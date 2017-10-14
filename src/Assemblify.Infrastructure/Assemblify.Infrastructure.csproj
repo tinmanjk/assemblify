@@ -49,6 +49,9 @@
     <Compile Include="Mapping\IMapFrom.cs" />
     <Compile Include="Mapping\QueryableExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\Contracts\IInfrastructureProviderNinjectRegistry.cs" />
+    <Compile Include="Providers\Contracts\IDateTimeProvider.cs" />
+    <Compile Include="Providers\DateTimeProvider.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

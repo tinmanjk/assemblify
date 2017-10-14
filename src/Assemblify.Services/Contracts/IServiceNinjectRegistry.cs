@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assemblify.Web.Providers.Contracts
+namespace Assemblify.Services.Contracts
 {
-    public interface IProvider
+    public interface IServiceNinjectRegistry
     {
     }
 }
