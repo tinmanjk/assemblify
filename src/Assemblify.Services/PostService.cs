@@ -27,6 +27,34 @@ namespace Assemblify.Services
             IUsersService usersService,
             IDateTimeProvider dateTimeProvider)
         {
+
+            if (postsRepo == null)
+            {
+                throw new ArgumentNullException(nameof(postsRepo));
+            }
+
+
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            if (postFactory == null)
+            {
+                throw new ArgumentNullException(nameof(postFactory));
+            }
+
+
+            if (usersService == null)
+            {
+                throw new ArgumentNullException(nameof(usersService));
+            }
+
+            if (dateTimeProvider == null)
+            {
+                throw new ArgumentNullException(nameof(dateTimeProvider));
+            }
+
             this.postsRepo = postsRepo;
             this.context = context;
             this.postFactory = postFactory;
