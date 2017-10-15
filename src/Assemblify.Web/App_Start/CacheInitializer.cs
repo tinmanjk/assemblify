@@ -32,7 +32,7 @@ namespace Assemblify.Web.App_Start
             this.GenerateUsersCache();
         }
 
-        public void GenerateUsersCache()
+        private void GenerateUsersCache()
         {
             this.cachingProvider.GetOrAdd(GlobalConstants.CachingUserNames, 
                 () => this.usersService.GetAllUserNames());

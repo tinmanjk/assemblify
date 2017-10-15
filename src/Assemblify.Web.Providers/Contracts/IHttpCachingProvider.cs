@@ -11,10 +11,5 @@ namespace Assemblify.Web.Providers.Contracts
     public interface IHttpCachingProvider
     {
         T GetOrAdd<T>(string cacheId, Func<T> getDataFunc, int durationInSeconds = GlobalConstants.CachingDefaultDuration);
-
-        void Update<T>(string cacheId, Func<T> getDataCallBack);
-
-
-        void Remove(string cacheId);
     }
 }

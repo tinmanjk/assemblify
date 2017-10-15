@@ -46,17 +46,5 @@ namespace Assemblify.Web.Providers
 
             return (T)httpContextProvider.ContextCache[cacheId];
         }
-
-        public void Update<T>(string cacheId, Func<T> getDataCallBack)
-        {
-            this.Remove(cacheId);
-            this.GetOrAdd(cacheId, getDataCallBack);
-
-        }
-
-        public void Remove(string cacheId)
-        {
-            httpContextProvider.ContextCache.Remove(cacheId);
-        }
     }
 }
