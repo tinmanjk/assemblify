@@ -63,6 +63,7 @@
     <Compile Include="PostsServiceTests\GetAllMappedToTests.cs" />
     <Compile Include="PostsServiceTests\GetAllTests.cs" />
     <Compile Include="PostsServiceTests\ConstructorTests.cs" />
+    <Compile Include="PostsServiceTests\EditTests.cs" />
     <Compile Include="PostsServiceTests\Mocks\PostMapFrom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
