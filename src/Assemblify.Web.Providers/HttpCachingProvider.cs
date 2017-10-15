@@ -25,32 +25,8 @@ namespace Assemblify.Web.Providers
             this.httpContextProvider = httpContextProvider;
         }
 
-        // overload without duration
-        public T GetOrAdd<T>(string cacheId, Func<T> getDataCallBack)
+        public T GetOrAdd<T>(string cacheId, Func<T> getDataCallBack, int durationInSeconds = GlobalConstants.CachingDefaultDuration)
         {
-            if (httpContextProvider.ContextCache[cacheId] == null)
-            {
-                lock (LockObject)
-                {
-                    if (httpContextProvider.ContextCache[cacheId] == null)
-                    {
-                        var data = getDataCallBack();
-                        httpContextProvider.ContextCache.Insert(
-                            cacheId,
-                            data,
-                            null,
-                            Cache.NoAbsoluteExpiration,
-                            Cache.NoSlidingExpiration);
-                    }
-                }
-            }
-
-            return (T)httpContextProvider.ContextCache[cacheId];
-        }
-
-        public T GetOrAdd<T>(string cacheId, Func<T> getDataCallBack, int durationInSeconds)
-        {
-
             if (httpContextProvider.ContextCache[cacheId] == null)
             {
                 lock (LockObject)

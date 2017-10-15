@@ -1,4 +1,5 @@
-﻿using Assemblify.Data.Models;
+﻿using Assemblify.Common;
+using Assemblify.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,10 @@ namespace Assemblify.Web.Providers.Contracts
 {
     public interface IHttpCachingProvider
     {
-        T GetOrAdd<T>(string cacheId, Func<T> getDataFunc, int durationInSeconds);
-        T GetOrAdd<T>(string cacheId, Func<T> getDataCallBack);
+        T GetOrAdd<T>(string cacheId, Func<T> getDataFunc, int durationInSeconds = GlobalConstants.CachingDefaultDuration);
 
         void Update<T>(string cacheId, Func<T> getDataCallBack);
-        
+
 
         void Remove(string cacheId);
     }

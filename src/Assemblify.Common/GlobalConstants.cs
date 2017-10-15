@@ -15,6 +15,8 @@ namespace Assemblify.Common
         public const string AdministratorPassword = "asdasd";
 
         public const string CachingUserNames = "userNames";
+        public const int CachingDefaultDuration = 60 * 1;
+
 
     }
 }
