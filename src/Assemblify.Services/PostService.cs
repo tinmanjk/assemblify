@@ -9,25 +9,29 @@ using System.Text;
 using System.Threading.Tasks;
 using Assemblify.Infrastructure.Mapping;
 using Assemblify.Infrastructure.Factories;
+using Assemblify.Infrastructure.Providers.Contracts;
 
 namespace Assemblify.Services
 {
-    public class PostsService : IPostsService
+    public class PostService : IPostService
     {
         private readonly IEfRepository<Post> postsRepo;
         private readonly ISaveContext context;
         private readonly IUsersService usersService;
         private readonly IPostFactory postFactory;
+        private readonly IDateTimeProvider dateTimeProvider;
 
-        public PostsService(IEfRepository<Post> postsRepo,
+        public PostService(IEfRepository<Post> postsRepo,
             ISaveContext context,
             IPostFactory postFactory,
-            IUsersService usersService)
+            IUsersService usersService,
+            IDateTimeProvider dateTimeProvider)
         {
             this.postsRepo = postsRepo;
             this.context = context;
             this.postFactory = postFactory;
             this.usersService = usersService;
+            this.dateTimeProvider = dateTimeProvider;
         }
 
         public Post GetPostById(object id)
@@ -40,28 +44,17 @@ namespace Assemblify.Services
             return this.postsRepo.GetByIdAndDeleted(id);
         }
 
-
+        public IEnumerable<Post> GetAll()
+        {
+            return this.postsRepo
+                .All
+                .ToList();
+        }
 
         public IEnumerable<Post> GetAllAndDeleted()
         {
             return this.postsRepo
                 .AllAndDeleted
-                .ToList();
-        }
-
-        public IEnumerable<TDest> GetAllAndDeletedMappedTo<TDest>()
-            where TDest : IMapFrom<Post>
-        {
-            return this.postsRepo
-                .AllAndDeleted
-                .MapTo<TDest>()
-                .ToList();
-        }
-
-        public IEnumerable<Post> GetAll()
-        {
-            return this.postsRepo
-                .All
                 .ToList();
         }
 
@@ -72,6 +65,15 @@ namespace Assemblify.Services
                     .All
                     .MapTo<TDest>()
                     .ToList();
+        }
+
+        public IEnumerable<TDest> GetAllAndDeletedMappedTo<TDest>()
+            where TDest : IMapFrom<Post>
+        {
+            return this.postsRepo
+                .AllAndDeleted
+                .MapTo<TDest>()
+                .ToList();
         }
 
         public void Edit(object postId, string newTitle, string newContent, bool isDeleted)
@@ -94,12 +96,6 @@ namespace Assemblify.Services
             this.postsRepo.Update(post);
             this.context.Commit();
         }
-
-        public bool PostExists()
-        {
-            throw new NotImplementedException();
-        }
-
 
         public Post CreatePost(string title, string content, string userId)
         {

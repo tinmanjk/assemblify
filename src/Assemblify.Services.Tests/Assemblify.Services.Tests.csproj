@@ -60,7 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PostsServiceTests\GetAllMappedTo.cs" />
+    <Compile Include="PostsServiceTests\GetAllMappedToTests.cs" />
     <Compile Include="PostsServiceTests\GetAllTests.cs" />
     <Compile Include="PostsServiceTests\Mocks\PostMapFrom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

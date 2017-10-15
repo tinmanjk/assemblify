@@ -21,7 +21,7 @@ namespace Assemblify.Web.Tests
         {
 
             // Arrange
-            var mockedPostsService = new Mock<IPostsService>();
+            var mockedPostsService = new Mock<IPostService>();
             var mockedIMapper = new Mock<IMapper>();
             var mockedCachingProvider = new Mock<IHttpCachingProvider>();
 
@@ -35,7 +35,7 @@ namespace Assemblify.Web.Tests
         public void TestConstructor_PassCachingProviderNull_ShouldThrowArgumentNullException()
         {
             // Arrange
-            var mockedPostsService = new Mock<IPostsService>();
+            var mockedPostsService = new Mock<IPostService>();
             var mockedIMapper = new Mock<IMapper>();
 
             // Act, Assert

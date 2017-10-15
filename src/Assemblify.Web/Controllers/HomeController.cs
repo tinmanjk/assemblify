@@ -14,11 +14,11 @@ namespace Assemblify.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IPostsService postsService;
+        private readonly IPostService postsService;
         private readonly IMapper mapper;
         private readonly IHttpCachingProvider cachingProvider;
 
-        public HomeController(IPostsService postsService,
+        public HomeController(IPostService postsService,
             IMapper mapper,
             IHttpCachingProvider cachingProvider)
         {

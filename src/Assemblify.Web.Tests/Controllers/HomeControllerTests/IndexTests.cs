@@ -21,7 +21,7 @@ namespace Assemblify.Web.Tests.Controllers.HomeControllerTests
         public void IndexShouldWorkCorrectly()
         {
             //Arrange
-            var mockedPostsService = new Mock<IPostsService>();
+            var mockedPostsService = new Mock<IPostService>();
             var mockedIMapper = new Mock<IMapper>();
             var mockedCachingProvider = new Mock<IHttpCachingProvider>();
 

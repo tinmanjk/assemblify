@@ -2,6 +2,7 @@
 using Assemblify.Data.Repositories;
 using Assemblify.Data.SaveContext;
 using Assemblify.Infrastructure.Factories;
+using Assemblify.Infrastructure.Providers.Contracts;
 using Assemblify.Services;
 using Assemblify.Services.Contracts;
 using Moq;
@@ -25,11 +26,14 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             var mockedSaveContext = new Mock<ISaveContext>();
             var mockedPostFactory = new Mock<IPostFactory>();
             var mockedUsersService = new Mock<IUsersService>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
-            var service = new PostsService(mockedPostRepository.Object,
+
+            var service = new PostService(mockedPostRepository.Object,
                 mockedSaveContext.Object,
                 mockedPostFactory.Object,
-                mockedUsersService.Object);
+                mockedUsersService.Object,
+                mockedDateTimeProvider.Object);
 
             // Act
             service.GetAll();

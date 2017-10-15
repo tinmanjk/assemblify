@@ -3,6 +3,7 @@ using Assemblify.Data.Repositories;
 using Assemblify.Data.SaveContext;
 using Assemblify.Infrastructure.Factories;
 using Assemblify.Infrastructure.Mapping;
+using Assemblify.Infrastructure.Providers.Contracts;
 using Assemblify.Services.Contracts;
 using Assemblify.Services.Tests.PostsServiceTests.Mocks;
 using Assemblify.Web.Controllers;
@@ -18,7 +19,7 @@ using System.Threading.Tasks;
 namespace Assemblify.Services.Tests.PostsServiceTests
 {
     [TestFixture]
-    public class GetAllMappedTo
+    public class GetAllMappedToTests
     {
 
         [Test]
@@ -29,6 +30,8 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             var mockedSaveContext = new Mock<ISaveContext>();
             var mockedPostFactory = new Mock<IPostFactory>();
             var mockedUsersService = new Mock<IUsersService>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+
 
             var mockedMapFromPost = new PostMapFrom();
 
@@ -38,8 +41,8 @@ namespace Assemblify.Services.Tests.PostsServiceTests
                 config.CreateMap<Post, PostMapFrom>();
             });
 
-            var service = new PostsService(mockedPostRepository.Object,
-                mockedSaveContext.Object, mockedPostFactory.Object, mockedUsersService.Object);
+            var service = new PostService(mockedPostRepository.Object,
+                mockedSaveContext.Object, mockedPostFactory.Object, mockedUsersService.Object, mockedDateTimeProvider.Object);
 
             // Act
             service.GetAllMappedTo<PostMapFrom>();
@@ -57,6 +60,7 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             var mockedMapFromPost = new PostMapFrom();
             var mockedPostFactory = new Mock<IPostFactory>();
             var mockedUsersService = new Mock<IUsersService>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
 
             var titleProperty = "zaglavie";
@@ -78,8 +82,8 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             mockedPostRepository.SetupGet(x => x.All).Returns(postsMock.AsQueryable);
 
 
-            var service = new PostsService(mockedPostRepository.Object,
-                mockedSaveContext.Object, mockedPostFactory.Object, mockedUsersService.Object);
+            var service = new PostService(mockedPostRepository.Object,
+                mockedSaveContext.Object, mockedPostFactory.Object, mockedUsersService.Object, mockedDateTimeProvider.Object);
 
             // Act
 

@@ -22,11 +22,11 @@ namespace Assemblify.Web.Areas.Administration.Controllers
 
     public class PostController : Controller
     {
-        private IPostsService postsService;
+        private IPostService postsService;
         private IAuthenticationProvider authenticationProvider;
         private IMapper mapper;
 
-        public PostController(IPostsService postsService,
+        public PostController(IPostService postsService,
             IAuthenticationProvider authenticationProvider,
             IMapper mapper)
         {

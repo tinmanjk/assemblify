@@ -12,11 +12,11 @@ namespace Assemblify.Web.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IPostsService postsService;
+        private readonly IPostService postsService;
         private readonly IMapper mapper;
         private readonly IHttpCachingProvider cachingProvider;
 
-        public UserController(IPostsService postsService,
+        public UserController(IPostService postsService,
             IMapper mapper,
             IHttpCachingProvider cachingProvider)
         {
