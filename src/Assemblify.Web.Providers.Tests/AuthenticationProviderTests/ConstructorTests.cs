@@ -21,11 +21,11 @@ namespace Assemblify.Web.Providers.Tests.AuthenticationProviderTests
         public void Constructor_WithPassedDateTimeProviderNull_ShouldThrowArgumentNullException()
         {
             // Arrange
-            var mockedHttpContextProvider = new MockedHttpContextProvider();
+            var mockedHttpContextProvider = new Mock<IHttpContextProvider>();
 
             // Act, Assert
             Assert.Throws<ArgumentNullException>(() =>
-                new MockedAuthenticationProvider(null, mockedHttpContextProvider));
+                new MockedAuthenticationProvider(null, mockedHttpContextProvider.Object));
         }
 
         [Test]
@@ -44,10 +44,10 @@ namespace Assemblify.Web.Providers.Tests.AuthenticationProviderTests
         {
             // Arrange
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            var mockedHttpContextProvider = new MockedHttpContextProvider();
+            var mockedHttpContextProvider = new Mock<IHttpContextProvider>();
 
             // Act
-            var authenticationProvider = new AuthenticationProvider(mockedDateTimeProvider.Object, mockedHttpContextProvider);
+            var authenticationProvider = new AuthenticationProvider(mockedDateTimeProvider.Object, mockedHttpContextProvider.Object);
 
             // Assert
             Assert.IsNotNull(authenticationProvider);
