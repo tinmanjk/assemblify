@@ -23,7 +23,7 @@ namespace Assemblify.Services.Contracts
 
         Post CreatePost(string title, string content, string userId);
 
-        void Edit(object postId, string newTitle, string newContent, bool isDeleted);
+        Post Edit(object postId, string newTitle, string newContent, bool isDeleted);
 
         void Update(Post post);
 

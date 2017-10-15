@@ -100,11 +100,20 @@ namespace Assemblify.Web.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                this.postsService.Edit(model.Id, model.Title, model.Content, model.IsDeleted);
+                var editedPost = this.postsService.Edit(model.Id, model.Title, model.Content, model.IsDeleted);
 
+                if (editedPost != null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError(GlobalConstants.ErrorNotEditedPostKey, GlobalConstants.ErrorNotEditedPostValue);
 
-                return RedirectToAction("Index");
+                }
+   
             }
+
             return View(model);
         }
 

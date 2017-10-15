@@ -104,7 +104,7 @@ namespace Assemblify.Services
                 .ToList();
         }
 
-        public void Edit(object postId, string newTitle, string newContent, bool isDeleted)
+        public Post Edit(object postId, string newTitle, string newContent, bool isDeleted)
         {
             var post = this.postsRepo.GetByIdAndDeleted(postId);
 
@@ -114,9 +114,20 @@ namespace Assemblify.Services
                 post.Content = newContent;
                 post.IsDeleted = isDeleted;
 
-                this.postsRepo.Update(post);
-                this.context.Commit();
+                try
+                {
+                    this.postsRepo.Update(post);
+                    this.context.Commit();
+                    return post;
+                }
+                catch (Exception e)
+                {
+
+                    return null;
+                }
             }
+
+            return null;
         }
 
         public void Update(Post post)

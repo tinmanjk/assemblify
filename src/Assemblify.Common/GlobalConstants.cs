@@ -20,6 +20,9 @@ namespace Assemblify.Common
         public const string ErrorNotCreatedPostKey = "notCreatedError";
         public const string ErrorNotCreatedPostValue = "Post could not be created";
 
+        public const string ErrorNotEditedPostKey = "notEdited";
+        public const string ErrorNotEditedPostValue = "Post could not be edited";
+
 
     }
 }
