@@ -17,6 +17,9 @@ namespace Assemblify.Common
         public const string CachingUserNames = "userNames";
         public const int CachingDefaultDuration = 60 * 1;
 
+        public const string ErrorNotCreatedPostKey = "notCreatedError";
+        public const string ErrorNotCreatedPostValue = "Post could not be created";
+
 
     }
 }

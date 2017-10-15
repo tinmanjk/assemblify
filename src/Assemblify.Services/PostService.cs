@@ -130,10 +130,16 @@ namespace Assemblify.Services
             var user = this.usersService.GetUserById(userId);
             var post = this.postFactory.CreatePost(title, content, user);
 
-            this.postsRepo.Add(post);
+            try
+            {
+                this.postsRepo.Add(post);
 
-            this.context.Commit();
-
+                this.context.Commit();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
 
             return post;
         }

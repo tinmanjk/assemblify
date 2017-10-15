@@ -59,9 +59,15 @@ namespace Assemblify.Web.Areas.Administration.Controllers
             if (ModelState.IsValid)
             {
                 var userId = this.authenticationProvider.CurrentUserId;
-                this.postsService.CreatePost(model.Title, model.Content, userId);
-
-                return RedirectToAction("Index");
+                var createdPost = this.postsService.CreatePost(model.Title, model.Content, userId);
+                if (createdPost != null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError(GlobalConstants.ErrorNotCreatedPostKey, GlobalConstants.ErrorNotCreatedPostValue);
+                }
             }
 
             return View(model);
