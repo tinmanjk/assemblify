@@ -112,6 +112,8 @@
     <Compile Include="Controllers\Administration\ManageControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\Administration\PostControllerTests\CreateGetTests.cs" />
     <Compile Include="Controllers\Administration\PostControllerTests\CreatePostTests.cs" />
+    <Compile Include="Controllers\Administration\PostControllerTests\EditGetTests.cs" />
+    <Compile Include="Controllers\Administration\PostControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\HomeControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\HomeControllerTests\IndexTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

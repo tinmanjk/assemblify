@@ -21,11 +21,11 @@ namespace Assemblify.Web.Tests.Controllers.Administration.PostControllerTests
         public void CreateGet_ShouldReturnCorrectViewWithModel()
         {
             // Arrange
-            var mockedLogService = new Mock<IPostService>();
+            var mockedPostService = new Mock<IPostService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedMapper = new Mock<IMapper>();
 
-            var controller = new PostController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+            var controller = new PostController(mockedPostService.Object, mockedAuthenticationProvider.Object,
                mockedMapper.Object);
 
             // Act, Assert
