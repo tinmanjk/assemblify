@@ -101,10 +101,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticationProviderTests\AddToRole.cs" />
+    <Compile Include="AuthenticationProviderTests\ChangePassword.cs" />
     <Compile Include="AuthenticationProviderTests\ConstructorTests.cs" />
+    <Compile Include="AuthenticationProviderTests\CurrentUserIdTests.cs" />
+    <Compile Include="AuthenticationProviderTests\CurrentUserNameTests.cs" />
     <Compile Include="AuthenticationProviderTests\IsAuthenticatedTests.cs" />
+    <Compile Include="AuthenticationProviderTests\IsInRoleTests.cs" />
     <Compile Include="AuthenticationProviderTests\Mocks\MockedAuthenticationProvider.cs" />
     <Compile Include="AuthenticationProviderTests\RegisterAndLoginUserTests.cs" />
+    <Compile Include="AuthenticationProviderTests\SignInWithPasswordTests.cs" />
+    <Compile Include="AuthenticationProviderTests\SignOutTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
