@@ -108,13 +108,10 @@ namespace Assemblify.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            //var posts = this.cachingProvider
-            //        .Get("cachedPosts", () =>
-            //            this.postsService
-            //                .GetAllMappedTo<PostViewModel>(), 60 * 1);
-            var posts = this.postsService
-                            .GetAllMappedTo<PostViewModel>();
-
+            var posts = this.cachingProvider
+                .GetOrAdd("cachedPosts", () =>
+                        this.postsService
+                            .GetAllMappedTo<PostViewModel>(), 60 * 1);
 
             var model = new HomeViewModel()
             {
