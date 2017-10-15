@@ -126,7 +126,6 @@ namespace Assemblify.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-
             this.postsService.HardDelete(id);
             return RedirectToAction("Index");
         }
