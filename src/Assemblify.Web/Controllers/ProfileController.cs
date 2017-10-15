@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Assemblify.Web.ViewModels;
-using Assemblify.Web.ViewModels.Manage;
+using Assemblify.Web.ViewModels.Profile;
 using Assemblify.Web.Providers.Managers;
 using Assemblify.Web.Providers.Contracts;
 
