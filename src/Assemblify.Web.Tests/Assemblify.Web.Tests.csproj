@@ -124,6 +124,10 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Assemblify.Data.Models\Assemblify.Data.Models.csproj">
+      <Project>{769F8F44-21F2-4374-997E-3DF923DCA05D}</Project>
+      <Name>Assemblify.Data.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Assemblify.Infrastructure\Assemblify.Infrastructure.csproj">
       <Project>{57c7eeda-8ba9-4b09-99dd-d6840584ad15}</Project>
       <Name>Assemblify.Infrastructure</Name>

@@ -1,4 +1,5 @@
-﻿using Assemblify.Services.Contracts;
+﻿using Assemblify.Data.Models;
+using Assemblify.Services.Contracts;
 using Assemblify.Web.Controllers;
 using Assemblify.Web.Providers.Contracts;
 using Assemblify.Web.ViewModels.Home;
@@ -17,45 +18,43 @@ namespace Assemblify.Web.Tests.Controllers.HomeControllerTests
     [TestFixture]
     public class IndexTests
     {
-        //[Test]
-        //public void IndexShouldWorkCorrectly()
-        //{
-        //    //Arrange
-        //    var mockedPostsService = new Mock<IPostService>();
-        //    var mockedIMapper = new Mock<IMapper>();
-        //    var mockedCachingProvider = new Mock<IHttpCachingProvider>();
+        [Test]
+        public void IndexShouldWorkCorrectly()
+        {
+            //Arrange
+            var mockedPostsService = new Mock<IPostService>();
+            var mockedIMapper = new Mock<IMapper>();
+            var mockedCachingProvider = new Mock<IHttpCachingProvider>();
 
-        //    var postViewModels = new List<PostViewModel>
-        //    {
-        //        new PostViewModel
-        //        {
-        //            Title="Post 1",
-        //            Content = "Content 1",
-        //            AuthorEmail = "admin@admin.com",
-        //            PostedOn = DateTime.Now,
-        //            Id = Guid.NewGuid()
-        //        }
-        //    };
+            var postViewModels = new List<PostViewModel>
+            {
+                new PostViewModel
+                {
+                    Title="Post 1",
+                    Content = "Content 1",
+                    AuthorEmail = "admin@admin.com",
+                    PostedOn = DateTime.Now,
+                    Id = Guid.NewGuid()
+                }
+            };
 
-        //    mockedPostsService.Setup(x => x.GetAllMappedTo<PostViewModel>())
-        //        .Returns(postViewModels);
+            mockedCachingProvider.Setup(x => x.GetOrAdd(It.IsAny<string>(),
+                                       It.IsAny<Func<IEnumerable<PostViewModel>>>(),
+                                        It.IsAny<int>())).Returns(postViewModels);
 
-        //    mockedCachingProvider.Setup(x => x.GetOrAdd(It.IsAny<string>(),
-        //                                mockedPostsService.Object.GetAllMappedTo<PostViewModel>,
-        //                                It.IsAny<int>())).Returns(() => postViewModels);
 
-        //    var controller = new HomeController(mockedPostsService.Object, mockedIMapper.Object, mockedCachingProvider.Object);
+            var controller = new HomeController(mockedPostsService.Object, mockedIMapper.Object, mockedCachingProvider.Object);
 
-        //    // Act && Assert
-        //    controller.WithCallTo(x => x.Index())
-        //        .ShouldRenderView("Index")
-        //        .WithModel<HomeViewModel>(
-        //            viewModel =>
-        //            {
-        //                Assert.AreEqual(postViewModels, viewModel.Posts);
+            // Act && Assert
+            controller.WithCallTo(x => x.Index())
+                .ShouldRenderView("Index")
+                .WithModel<HomeViewModel>(
+                    viewModel =>
+                    {
+                        Assert.AreEqual(postViewModels, viewModel.Posts);
 
-        //            }).AndNoModelErrors();
+                    }).AndNoModelErrors();
 
-        //}
+        }
     }
 }
