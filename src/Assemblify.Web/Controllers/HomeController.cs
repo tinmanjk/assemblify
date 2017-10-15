@@ -42,29 +42,29 @@ namespace Assemblify.Web.Controllers
             this.cachingProvider = cachingProvider;
         }
 
-        [HttpGet]
-        public ActionResult GetFiltered(int pageSize)
-        {
-            var posts = this.postsService
-                .GetAllMappedTo<PostViewModel>()
-                .OrderBy(x => x.Title)
-                .Take(pageSize)
-                .ToList();
+        //[HttpGet]
+        //public ActionResult GetFiltered(int pageSize)
+        //{
+        //    var posts = this.postsService
+        //        .GetAllMappedTo<PostViewModel>()
+        //        .OrderBy(x => x.Title)
+        //        .Take(pageSize)
+        //        .ToList();
 
-            return this.View(posts);
-        }
+        //    return this.View(posts);
+        //}
 
-        [HttpGet]
-        public ActionResult UploadFile()
-        {
-            return this.View();
-        }
+        //[HttpGet]
+        //public ActionResult UploadFile()
+        //{
+        //    return this.View();
+        //}
 
-        [HttpPost]
-        public ActionResult UploadFile(HttpPostedFileBase file)
-        {
-            return this.View();
-        }
+        //[HttpPost]
+        //public ActionResult UploadFile(HttpPostedFileBase file)
+        //{
+        //    return this.View();
+        //}
 
 
         [HttpGet]
@@ -99,29 +99,15 @@ namespace Assemblify.Web.Controllers
         }
 
 
-        [HttpGet]
-        public ActionResult TempExample()
-        {
-            return this.View();
-        }
+        //[HttpGet]
+        //public ActionResult TempExample()
+        //{
+        //    return this.View();
+        //}
 
-
-        [HttpGet]
-        public ActionResult SessionExample()
-        {
-            if (this.Session["date"] == null)
-            {
-                this.Session["date"] = DateTime.UtcNow;
-            }
-            this.Session["Pencho"] = "Pencho ot sesiqta";
-
-            return this.View();
-        }
         [HttpGet]
         public ActionResult Index()
         {
-            this.TempData["source"] = "Index";
-
             //var posts = this.cachingProvider
             //        .Get("cachedPosts", () =>
             //            this.postsService
@@ -149,45 +135,30 @@ namespace Assemblify.Web.Controllers
             // redirektvame kam Index Gettera
             // tova se sluchva taka ili inache sega!
 
-
             return this.RedirectToAction("Index");
         }
 
         // API Method for Ajax
 
-        public ActionResult GetPosts()
-        {
-            var posts = this.postsService
-                .GetAllMappedTo<PostViewModel>()
-                .OrderBy(x => x.Title)
-                .ToList();
+        //public ActionResult GetPosts()
+        //{
+        //    var posts = this.postsService
+        //        .GetAllMappedTo<PostViewModel>()
+        //        .OrderBy(x => x.Title)
+        //        .ToList();
 
-            return this.PartialView("_PostListPartial", posts);
-        }
+        //    return this.PartialView("_PostListPartial", posts);
+        //}
 
-        public ActionResult GetPostsJson()
-        {
-            var posts = this.postsService
-                .GetAllMappedTo<PostViewModel>()
-                .Select(x => new { Title = x.Title, Author = x.AuthorEmail })
-                .OrderBy(x => x.Title)
-                .ToList();
+        //public ActionResult GetPostsJson()
+        //{
+        //    var posts = this.postsService
+        //        .GetAllMappedTo<PostViewModel>()
+        //        .Select(x => new { Title = x.Title, Author = x.AuthorEmail })
+        //        .OrderBy(x => x.Title)
+        //        .ToList();
 
-            return this.Json(posts, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        //    return this.Json(posts, JsonRequestBehavior.AllowGet);
+        //}
     }
 }
