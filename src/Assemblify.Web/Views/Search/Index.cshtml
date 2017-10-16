@@ -2,12 +2,12 @@
     ViewBag.Title = "Search";
 }
 
-@using Assemblify.Web.ViewModels.Home
-@model PostSearchViewModel
+@model Assemblify.Web.ViewModels.Search.PostSearchViewModel
 
 <hr />
-@using (@Html.BeginForm("Search", "Home", FormMethod.Post, null))
+@using (@Html.BeginForm("Index", "Search", FormMethod.Post, null))
 {
+    @Html.AntiForgeryToken()
     @Html.EditorFor(x => x.SearchTerm)
 
     <input type="submit" value="Search" />

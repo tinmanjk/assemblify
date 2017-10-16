@@ -119,6 +119,7 @@
     <Compile Include="Controllers\Administration\PostControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\HomeControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\HomeControllerTests\IndexTests.cs" />
+    <Compile Include="Controllers\PostControllerTests\PostsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routes\Fakes\UserNameConstraintMock.cs" />
     <Compile Include="Routes\HomeRouteTests\AboutTests.cs" />

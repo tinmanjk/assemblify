@@ -28,7 +28,7 @@ namespace Assemblify.Web
         }
 
         public RouteConfig()
-            :this(DependencyResolver.Current.GetService<IConstraintsFactory>(), 
+            : this(DependencyResolver.Current.GetService<IConstraintsFactory>(),
                  DependencyResolver.Current.GetService<IHttpCachingProvider>(),
                  DependencyResolver.Current.GetService<IUserService>())
         {
@@ -43,10 +43,11 @@ namespace Assemblify.Web
 
             routes.MapRoute(
                 name: "UserPosts",
-                url: "{username}/{action}/{postTitle}",
-                defaults: new { controller = "User", action = "UserProfile", postTitle = UrlParameter.Optional },
-                constraints: new { username = constraintsFactory.CreateUserNameConstraint(this.cachingProvider,this.usersService) }
-            );
+                url: "{username}/posts/{postTitle}",
+                defaults: new { controller = "Post", action = "PostsByUserName", postTitle = UrlParameter.Optional },
+                constraints: new { username = constraintsFactory.CreateUserNameConstraint(this.cachingProvider, this.usersService) },
+                namespaces: new[] { "Assemblify.Web.Controllers" }
+                );
 
             routes.MapRoute(
                 name: "Default",

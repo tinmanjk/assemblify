@@ -269,10 +269,10 @@
     <Compile Include="Constants\PartialViews.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\PostController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\AdministrationAreaAuthorizationFilter.cs" />
     <Compile Include="Filters\ClientTimeZoneAttribute.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -286,13 +286,13 @@
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Home\HomeViewModel.cs" />
-    <Compile Include="ViewModels\Home\PostSearchViewModel.cs" />
+    <Compile Include="ViewModels\Search\PostSearchViewModel.cs" />
     <Compile Include="ViewModels\Home\PostViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Profile\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Profile\IndexViewModel.cs" />
-    <Compile Include="ViewModels\User\UserPostsViewModel.cs" />
+    <Compile Include="ViewModels\Post\UserPostsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Administration\Controllers\ManageController.cs" />
@@ -347,7 +347,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -368,15 +367,14 @@
     <Content Include="Views\Shared\_PostDetailsPartial.cshtml" />
     <Content Include="Views\Shared\_PostEditPartial.cshtml" />
     <Content Include="Views\Shared\_PostListPartial.cshtml" />
-    <Content Include="Views\Home\GetFiltered.cshtml" />
-    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PostViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PostContentTextArea.cshtml" />
     <Content Include="Views\Home\DisplayTemplates\PostViewModelWithoutInjection.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <None Include="Views\Home\DisplayTemplates\PostViewModelWithInjection.cshtml" />
-    <Content Include="Views\User\Posts.cshtml" />
-    <Content Include="Views\User\DisplayTemplates\UserPostsViewModel.cshtml" />
+    <Content Include="Views\Post\PostsByUserName.cshtml" />
+    <Content Include="Views\Post\DisplayTemplates\UserPostsViewModel.cshtml" />
     <Content Include="Views\Shared\_PostUserPostDetailsPartial.cshtml" />
     <Content Include="Views\Post\Create.cshtml" />
     <Content Include="Views\Shared\_NavigationPartial.cshtml" />
@@ -386,7 +384,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="ViewModels\Post\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Assemblify.Web.ViewModels.Home;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Assemblify.Web.ViewModels.Home
+namespace Assemblify.Web.ViewModels.Search
 {
     public class PostSearchViewModel
     {

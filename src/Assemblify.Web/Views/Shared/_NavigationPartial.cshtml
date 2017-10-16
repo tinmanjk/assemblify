@@ -14,8 +14,8 @@
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>
                 <li>@Html.ActionLink("About", "About", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>            
-                <li>@Html.ActionLink("Search", "Search", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>
-
+                <li>@Html.ActionLink("Search", "Index", "Search", routeValues: new { area = "" }, htmlAttributes: null)</li>
+                
 
                 @if (Request.IsAuthenticated)
                 {
