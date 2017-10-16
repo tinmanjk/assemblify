@@ -31,10 +31,5 @@ namespace Assemblify.Web.Controllers
                             .GetPostsByUserNameMappedTo<UserPostsViewModel>(username);
             return View(posts);
         }
-
-        public ActionResult UserProfile(string username, string postTitle)
-        {
-            return Content("Profile of" + username);
-        }
     }
 }
