@@ -37,7 +37,7 @@ namespace Assemblify.Web.Controllers
         public ActionResult GetPosts(string searchTerm)
         {
             var foundPosts = this.postsService
-                    .GetPostsFilteredForTitleOrContent<PostViewModel>(searchTerm);
+                    .GetPostsFilteredForTitleOrContentMappedTo<PostViewModel>(searchTerm);
 
             return this.PartialView("_PostSearchListPartial", foundPosts);
         }

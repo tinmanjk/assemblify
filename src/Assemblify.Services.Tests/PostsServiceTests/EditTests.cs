@@ -73,8 +73,6 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             mockedSaveContext.Verify(u => u.Commit(), Times.Never);
         }
 
-        //[TestCase(1, "description", "name")]
-        //[TestCase(1423, "another description", "name")]
         [Test]
         public void Edit_RepositoryReturnsLog_ShouldSetPostContent()
         {
@@ -166,6 +164,38 @@ namespace Assemblify.Services.Tests.PostsServiceTests
 
             // Assert
             mockedSaveContext.Verify(r => r.Commit(), Times.Once);
+        }
+
+        [Test]
+        public void Edit_SaveContextThrows_ShouldReturnNull()
+        {
+            // Arrange
+            var guid = Guid.NewGuid();
+            var title = "title";
+            var content = "content";
+            var isDeleted = false;
+
+            var post = new Post();
+            var mockedPostRepository = new Mock<IEfRepository<Post>>();
+            mockedPostRepository.Setup(r => r.GetByIdAndDeleted(It.IsAny<object>())).Returns(post);
+
+            var mockedSaveContext = new Mock<ISaveContext>();
+            mockedSaveContext.Setup(x => x.Commit()).Throws<Exception>();
+            var mockedPostFactory = new Mock<IPostFactory>();
+            var mockedUsersService = new Mock<IUserService>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+
+            var postService = new PostService(mockedPostRepository.Object,
+                mockedSaveContext.Object,
+                mockedPostFactory.Object,
+                mockedUsersService.Object,
+                mockedDateTimeProvider.Object);
+
+            // Act
+            var result = postService.Edit(guid, title, content, isDeleted);
+
+            // Assert
+            Assert.IsNull(result);
         }
     }
 }

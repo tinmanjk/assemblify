@@ -110,12 +110,12 @@ namespace Assemblify.Services
 
             return this.postsRepo
                     .All
-                    .Where(x => x.Author.UserName == userName.ToLower())
+                    .Where(x => x.Author.UserName.ToLower() == userName.ToLower())
                     .MapTo<TDest>()
                     .ToList();
         }
 
-        public IEnumerable<TDest> GetPostsFilteredForTitleOrContent<TDest>(string searchTerm)
+        public IEnumerable<TDest> GetPostsFilteredForTitleOrContentMappedTo<TDest>(string searchTerm)
             where TDest : IMapFrom<Post>
         {
             var searchTermtoLower = searchTerm.ToLower();

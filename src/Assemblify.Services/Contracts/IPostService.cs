@@ -21,7 +21,7 @@ namespace Assemblify.Services.Contracts
         IEnumerable<TDest> GetPostsByUserNameMappedTo<TDest>(string userName)
              where TDest : IMapFrom<Post>;
 
-        IEnumerable<TDest> GetPostsFilteredForTitleOrContent<TDest>(string searchTerm)
+        IEnumerable<TDest> GetPostsFilteredForTitleOrContentMappedTo<TDest>(string searchTerm)
              where TDest : IMapFrom<Post>;
 
         Post CreatePost(string title, string content, string userId);

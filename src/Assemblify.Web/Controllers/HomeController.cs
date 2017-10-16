@@ -15,7 +15,6 @@ namespace Assemblify.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IPostService postsService;
-        private readonly IMapper mapper;
         private readonly IHttpCachingProvider cachingProvider;
 
         public HomeController(IPostService postsService,

@@ -40,7 +40,7 @@ namespace Assemblify.Web.Tests.Controllers.SearchControllerTests
 
             var searchTerm = "searchterm";
 
-            mockedPostService.Setup(x => x.GetPostsFilteredForTitleOrContent<PostViewModel>(searchTerm))
+            mockedPostService.Setup(x => x.GetPostsFilteredForTitleOrContentMappedTo<PostViewModel>(searchTerm))
                 .Returns(viewModel);
 
             var controller = new SearchController(mockedPostService.Object);
