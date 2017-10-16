@@ -2,18 +2,22 @@
     ViewBag.Title = "Search";
 }
 
-@model Assemblify.Web.ViewModels.Search.PostSearchViewModel
-
 <hr />
 
 
-@using (Ajax.BeginForm("Index", "Search", 
-    new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultArea" }))
+@using (Ajax.BeginForm("GetPosts","Search",
+        new AjaxOptions
+        {
+            UpdateTargetId = "posts",
+            InsertionMode = InsertionMode.Replace
+        }))
 {
     @Html.AntiForgeryToken()
-    @Html.EditorFor(x => x.SearchTerm)
-
+    <input type="text" name="searchTerm" />
     <input type="submit" value="Search" />
-
 }
-<div id="resultArea"></div>
+
+
+<div id="posts">
+
+</div>

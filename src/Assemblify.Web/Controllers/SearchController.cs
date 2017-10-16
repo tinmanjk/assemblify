@@ -2,7 +2,6 @@
 using Assemblify.Services.Contracts;
 using Assemblify.Web.Providers.Contracts;
 using Assemblify.Web.ViewModels.Home;
-using Assemblify.Web.ViewModels.Search;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using System;
@@ -16,31 +15,16 @@ namespace Assemblify.Web.Controllers
     public class SearchController : Controller
     {
         private readonly IPostService postsService;
-        private readonly IMapper mapper;
         private readonly IHttpCachingProvider cachingProvider;
 
-        public SearchController(IPostService postsService,
-            IMapper mapper,
-            IHttpCachingProvider cachingProvider)
+        public SearchController(IPostService postsService)
         {
             if (postsService == null)
             {
                 throw new ArgumentNullException(nameof(postsService));
             }
 
-            if (mapper == null)
-            {
-                throw new ArgumentNullException(nameof(mapper));
-            }
-
-            if (cachingProvider == null)
-            {
-                throw new ArgumentNullException(nameof(cachingProvider));
-            }
-
             this.postsService = postsService;
-            this.mapper = mapper;
-            this.cachingProvider = cachingProvider;
         }
 
         [HttpGet]
@@ -51,19 +35,22 @@ namespace Assemblify.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(PostSearchViewModel model)
+        public ActionResult GetPosts(string searchTerm)
         {
-            if (model.SearchTerm != null)
+            IEnumerable<PostViewModel> foundPosts = null;
+            if (searchTerm.Trim() == "")
             {
-                model.FoundPosts = this.postsService
-                    .GetAllMappedTo<PostViewModel>()
-                    .Where(x =>
-                            x.Title.ToLower().Contains(model.SearchTerm.ToLower()))
-                    .OrderBy(x => x.Title)
-                    .ToList();
+                return this.PartialView("_PostListPartial", foundPosts);
             }
+            foundPosts = this.postsService
+                .GetAllMappedTo<PostViewModel>()
+                .Where(x =>
+                          x.Title.ToLower().Contains(searchTerm.ToLower())
+                          )
+                  .OrderBy(x => x.Title)
+                  .ToList();
 
-            return this.RedirectToAction("Index");
+            return this.PartialView("_PostListPartial", foundPosts);
         }
     }
 }
