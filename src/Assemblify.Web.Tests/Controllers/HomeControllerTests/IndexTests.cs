@@ -23,7 +23,6 @@ namespace Assemblify.Web.Tests.Controllers.HomeControllerTests
         {
             //Arrange
             var mockedPostsService = new Mock<IPostService>();
-            var mockedIMapper = new Mock<IMapper>();
             var mockedCachingProvider = new Mock<IHttpCachingProvider>();
 
             var postViewModels = new List<PostViewModel>
@@ -43,7 +42,7 @@ namespace Assemblify.Web.Tests.Controllers.HomeControllerTests
                                         It.IsAny<int>())).Returns(postViewModels);
 
 
-            var controller = new HomeController(mockedPostsService.Object, mockedIMapper.Object, mockedCachingProvider.Object);
+            var controller = new HomeController(mockedPostsService.Object, mockedCachingProvider.Object);
 
             // Act && Assert
             controller.WithCallTo(x => x.Index())

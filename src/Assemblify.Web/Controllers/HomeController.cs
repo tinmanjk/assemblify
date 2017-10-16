@@ -19,17 +19,11 @@ namespace Assemblify.Web.Controllers
         private readonly IHttpCachingProvider cachingProvider;
 
         public HomeController(IPostService postsService,
-            IMapper mapper,
             IHttpCachingProvider cachingProvider)
         {
             if (postsService == null)
             {
                 throw new ArgumentNullException(nameof(postsService));
-            }
-
-            if (mapper == null)
-            {
-                throw new ArgumentNullException(nameof(mapper));
             }
 
             if (cachingProvider == null)
@@ -38,7 +32,6 @@ namespace Assemblify.Web.Controllers
             }
 
             this.postsService = postsService;
-            this.mapper = mapper;
             this.cachingProvider = cachingProvider;
         }
 
