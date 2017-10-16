@@ -42,39 +42,13 @@ namespace Assemblify.Web.Controllers
             this.cachingProvider = cachingProvider;
         }
 
-        //[HttpGet]
-        //public ActionResult GetFiltered(int pageSize)
-        //{
-        //    var posts = this.postsService
-        //        .GetAllMappedTo<PostViewModel>()
-        //        .OrderBy(x => x.Title)
-        //        .Take(pageSize)
-        //        .ToList();
-
-        //    return this.View(posts);
-        //}
-
-        //[HttpGet]
-        //public ActionResult UploadFile()
-        //{
-        //    return this.View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult UploadFile(HttpPostedFileBase file)
-        //{
-        //    return this.View();
-        //}
-
-
         [HttpGet]
         public ActionResult Search()
         {
             return this.View(new PostSearchViewModel()
             {
                 FoundPosts = new List<PostViewModel>()
-            }
-            );
+            });
         }
 
         [HttpPost]
@@ -85,8 +59,7 @@ namespace Assemblify.Web.Controllers
                 model.FoundPosts = this.postsService
                     .GetAllMappedTo<PostViewModel>()
                     .Where(x =>
-                            x.Title.ToLower().Contains(model.SearchTerm.ToLower())
-                            )
+                            x.Title.ToLower().Contains(model.SearchTerm.ToLower()))
                     .OrderBy(x => x.Title)
                     .ToList();
             }
@@ -97,13 +70,6 @@ namespace Assemblify.Web.Controllers
 
             return this.View(model);
         }
-
-
-        //[HttpGet]
-        //public ActionResult TempExample()
-        //{
-        //    return this.View();
-        //}
 
         [HttpGet]
         public ActionResult Index()
@@ -120,42 +86,5 @@ namespace Assemblify.Web.Controllers
 
             return View(model);
         }
-
-        [HttpPost]
-        public ActionResult Index(PostViewModel model)
-        {
-            var post = this.mapper.Map<Post>(model);
-
-            this.postsService.Update(post);
-
-            // sled kato prikluchim s update.a 
-            // redirektvame kam Index Gettera
-            // tova se sluchva taka ili inache sega!
-
-            return this.RedirectToAction("Index");
-        }
-
-        // API Method for Ajax
-
-        //public ActionResult GetPosts()
-        //{
-        //    var posts = this.postsService
-        //        .GetAllMappedTo<PostViewModel>()
-        //        .OrderBy(x => x.Title)
-        //        .ToList();
-
-        //    return this.PartialView("_PostListPartial", posts);
-        //}
-
-        //public ActionResult GetPostsJson()
-        //{
-        //    var posts = this.postsService
-        //        .GetAllMappedTo<PostViewModel>()
-        //        .Select(x => new { Title = x.Title, Author = x.AuthorEmail })
-        //        .OrderBy(x => x.Title)
-        //        .ToList();
-
-        //    return this.Json(posts, JsonRequestBehavior.AllowGet);
-        //}
     }
 }

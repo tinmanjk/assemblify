@@ -19,6 +19,17 @@ namespace Assemblify.Services
         public UserService(IEfRepository<User> usersRepo,
             ISaveContext context)
         {
+
+            if (usersRepo == null)
+            {
+                throw new ArgumentNullException(nameof(usersRepo));
+            }
+
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
             this.usersRepo = usersRepo;
             this.context = context;
         }
