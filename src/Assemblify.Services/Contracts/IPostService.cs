@@ -25,8 +25,6 @@ namespace Assemblify.Services.Contracts
 
         Post Edit(object postId, string newTitle, string newContent, bool isDeleted);
 
-        void Update(Post post);
-
         void HardDelete(object id);
     }
 }

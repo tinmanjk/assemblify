@@ -104,6 +104,17 @@ namespace Assemblify.Services
                 .ToList();
         }
 
+        public IEnumerable<TDest> GetPostsByUserNameMappedTo<TDest>(string userName) where TDest : IMapFrom<Post>
+        {
+
+            return this.postsRepo
+                    .All
+                    .Where(x => x.Author.UserName == userName.ToLower())
+                    .MapTo<TDest>()
+                    .ToList();
+        }
+
+
         public Post Edit(object postId, string newTitle, string newContent, bool isDeleted)
         {
             var post = this.postsRepo.GetByIdAndDeleted(postId);
@@ -130,11 +141,6 @@ namespace Assemblify.Services
             return null;
         }
 
-        public void Update(Post post)
-        {
-            this.postsRepo.Update(post);
-            this.context.Commit();
-        }
 
         public Post CreatePost(string title, string content, string userId)
         {
@@ -153,16 +159,6 @@ namespace Assemblify.Services
             }
 
             return post;
-        }
-
-        public IEnumerable<TDest> GetPostsByUserNameMappedTo<TDest>(string userName) where TDest : IMapFrom<Post>
-        {
-
-            return this.postsRepo
-                    .All
-                    .Where(x => x.Author.UserName == userName.ToLower())
-                    .MapTo<TDest>()
-                    .ToList();
         }
 
         public void HardDelete(object id)
