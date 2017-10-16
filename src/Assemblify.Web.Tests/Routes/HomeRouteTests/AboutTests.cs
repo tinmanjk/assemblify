@@ -25,7 +25,7 @@ namespace Assemblify.Web.Tests.Routes.HomeRouteTests
             string url = $"/home/index";
             var constraintsFactoryMock = new Mock<IConstraintsFactory>();
             var cachingProviderMock = new Mock<IHttpCachingProvider>();
-            var usersServiceMock = new Mock<IUsersService>();
+            var usersServiceMock = new Mock<IUserService>();
             var userNameConstraintMock = new UserNameConstraintMock();
 
             constraintsFactoryMock

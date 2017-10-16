@@ -17,14 +17,14 @@ namespace Assemblify.Services
     {
         private readonly IEfRepository<Post> postsRepo;
         private readonly ISaveContext context;
-        private readonly IUsersService usersService;
+        private readonly IUserService usersService;
         private readonly IPostFactory postFactory;
         private readonly IDateTimeProvider dateTimeProvider;
 
         public PostService(IEfRepository<Post> postsRepo,
             ISaveContext context,
             IPostFactory postFactory,
-            IUsersService usersService,
+            IUserService usersService,
             IDateTimeProvider dateTimeProvider)
         {
 

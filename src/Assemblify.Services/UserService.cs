@@ -11,12 +11,12 @@ using Assemblify.Infrastructure.Mapping;
 
 namespace Assemblify.Services
 {
-    public class UsersService : IUsersService
+    public class UserService : IUserService
     {
         private readonly IEfRepository<User> usersRepo;
         private readonly ISaveContext context;
 
-        public UsersService(IEfRepository<User> usersRepo,
+        public UserService(IEfRepository<User> usersRepo,
             ISaveContext context)
         {
             this.usersRepo = usersRepo;

@@ -15,11 +15,11 @@ namespace Assemblify.Web
     {
         private IConstraintsFactory constraintsFactory;
         private IHttpCachingProvider cachingProvider;
-        private IUsersService usersService;
+        private IUserService usersService;
 
         public RouteConfig(IConstraintsFactory constraintsFactory,
             IHttpCachingProvider cachingProvider,
-            IUsersService usersService)
+            IUserService usersService)
         {
             this.constraintsFactory = constraintsFactory;
             this.cachingProvider = cachingProvider;
@@ -30,7 +30,7 @@ namespace Assemblify.Web
         public RouteConfig()
             :this(DependencyResolver.Current.GetService<IConstraintsFactory>(), 
                  DependencyResolver.Current.GetService<IHttpCachingProvider>(),
-                 DependencyResolver.Current.GetService<IUsersService>())
+                 DependencyResolver.Current.GetService<IUserService>())
         {
 
         }

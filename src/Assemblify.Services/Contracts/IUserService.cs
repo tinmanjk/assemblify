@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Assemblify.Services.Contracts
 {
-    public interface IUsersService
+    public interface IUserService
     {
         IEnumerable<User> GetAll();
         IEnumerable<string> GetAllUserNames();

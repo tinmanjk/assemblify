@@ -29,7 +29,7 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             var mockedPostRepository = new Mock<IEfRepository<Post>>();
             var mockedSaveContext = new Mock<ISaveContext>();
             var mockedPostFactory = new Mock<IPostFactory>();
-            var mockedUsersService = new Mock<IUsersService>();
+            var mockedUsersService = new Mock<IUserService>();
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
             var postService = new PostService(mockedPostRepository.Object,
@@ -57,7 +57,7 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             var mockedPostRepository = new Mock<IEfRepository<Post>>();
             var mockedSaveContext = new Mock<ISaveContext>();
             var mockedPostFactory = new Mock<IPostFactory>();
-            var mockedUsersService = new Mock<IUsersService>();
+            var mockedUsersService = new Mock<IUserService>();
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
             var postService = new PostService(mockedPostRepository.Object,
@@ -90,7 +90,7 @@ namespace Assemblify.Services.Tests.PostsServiceTests
 
             var mockedSaveContext = new Mock<ISaveContext>();
             var mockedPostFactory = new Mock<IPostFactory>();
-            var mockedUsersService = new Mock<IUsersService>();
+            var mockedUsersService = new Mock<IUserService>();
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
             var postService = new PostService(mockedPostRepository.Object,
@@ -121,7 +121,7 @@ namespace Assemblify.Services.Tests.PostsServiceTests
 
             var mockedSaveContext = new Mock<ISaveContext>();
             var mockedPostFactory = new Mock<IPostFactory>();
-            var mockedUsersService = new Mock<IUsersService>();
+            var mockedUsersService = new Mock<IUserService>();
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
             var postService = new PostService(mockedPostRepository.Object,
@@ -152,7 +152,7 @@ namespace Assemblify.Services.Tests.PostsServiceTests
 
             var mockedSaveContext = new Mock<ISaveContext>();
             var mockedPostFactory = new Mock<IPostFactory>();
-            var mockedUsersService = new Mock<IUsersService>();
+            var mockedUsersService = new Mock<IUserService>();
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
             var postService = new PostService(mockedPostRepository.Object,
