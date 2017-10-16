@@ -22,7 +22,7 @@ namespace Assemblify.Web.ViewModels.Home
 
         public string Content { get; set; }
 
-        public string AuthorEmail { get; set; }
+        public string AuthorUserName { get; set; }
 
         // may lead to conflict if there are custom display templates
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
@@ -31,7 +31,6 @@ namespace Assemblify.Web.ViewModels.Home
         public void CreateMappingsForMe(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Post, PostViewModel>()
-                .ForMember(postViewModel => postViewModel.AuthorEmail, cfg => cfg.MapFrom(post => post.Author.Email))
                 .ForMember(postViewModel => postViewModel.PostedOn, cfg => cfg.MapFrom(post => post.CreatedOn))
                 .ReverseMap();
         }

@@ -11,33 +11,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assemblify.Web.Tests
+namespace Assemblify.Web.Tests.SearchControllerTests
 {
     [TestFixture]
     public class ConstructorTests
     {
+        [Test]
+        public void Constructor_PassCachingProviderNull_ShouldThrowArgumentNullException()
+        {
+            //Arrange, Act, Assert
+            Assert.Throws<ArgumentNullException>(() => new SearchController(null));
+        }
+
         [Test]
         public void ConstructorShould_Initialize_WithCorrectlyPassedParameters()
         {
 
             // Arrange
             var mockedPostsService = new Mock<IPostService>();
-            var mockedCachingProvider = new Mock<IHttpCachingProvider>();
 
             // Act
-            var controller = new HomeController(mockedPostsService.Object, mockedCachingProvider.Object);
+            var controller = new SearchController(mockedPostsService.Object);
             // Assert
             Assert.IsNotNull(controller);
-        }
-
-        [Test]
-        public void Constructor_WithPassedCachingProviderNull_ShouldThrowArgumentNullException()
-        {
-            // Arrange
-            var mockedPostsService = new Mock<IPostService>();
-
-            // Act, Assert
-            Assert.Throws<ArgumentNullException>(() => new HomeController(mockedPostsService.Object, null));
         }
     }
 }

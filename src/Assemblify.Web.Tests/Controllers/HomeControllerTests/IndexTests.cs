@@ -31,7 +31,7 @@ namespace Assemblify.Web.Tests.Controllers.HomeControllerTests
                 {
                     Title="Post 1",
                     Content = "Content 1",
-                    AuthorEmail = "admin@admin.com",
+                    AuthorUserName = "admin",
                     PostedOn = DateTime.Now,
                     Id = Guid.NewGuid()
                 }

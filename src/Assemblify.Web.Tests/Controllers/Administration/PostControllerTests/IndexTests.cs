@@ -19,7 +19,7 @@ namespace Assemblify.Web.Tests.Controllers.Administration.PostControllerTests
     public class IndexTests
     {
         [Test]
-        public void TestIndex_ShouldReturnViewResult()
+        public void Index_ShouldReturnViewResult()
         {
             // Arrange
             var mockedPostService = new Mock<IPostService>();

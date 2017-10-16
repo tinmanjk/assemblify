@@ -13,7 +13,7 @@ namespace Assemblify.Web.Tests.Controllers.Administration.ManageControllerTests
     public class IndexTests
     {
         [Test]
-        public void TestIndex_ShouldReturnViewResult()
+        public void Index_ShouldReturnViewResult()
         {
             // Arrange
             var controller = new ManageController();
