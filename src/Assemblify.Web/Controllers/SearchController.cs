@@ -15,7 +15,6 @@ namespace Assemblify.Web.Controllers
     public class SearchController : Controller
     {
         private readonly IPostService postsService;
-        private readonly IHttpCachingProvider cachingProvider;
 
         public SearchController(IPostService postsService)
         {
@@ -37,20 +36,15 @@ namespace Assemblify.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult GetPosts(string searchTerm)
         {
-            IEnumerable<PostViewModel> foundPosts = null;
-            if (searchTerm.Trim() == "")
-            {
-                return this.PartialView("_PostListPartial", foundPosts);
-            }
-            foundPosts = this.postsService
-                .GetAllMappedTo<PostViewModel>()
-                .Where(x =>
+            var foundPosts = this.postsService
+                    .GetAllMappedTo<PostViewModel>()
+                    .Where(x =>
                           x.Title.ToLower().Contains(searchTerm.ToLower())
                           )
-                  .OrderBy(x => x.Title)
-                  .ToList();
+                    .OrderBy(x => x.Title)
+                    .ToList();
 
-            return this.PartialView("_PostListPartial", foundPosts);
+            return this.PartialView("_PostSearchListPartial", foundPosts);
         }
     }
 }

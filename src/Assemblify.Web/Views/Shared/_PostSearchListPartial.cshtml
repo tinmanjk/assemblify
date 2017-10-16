@@ -1,0 +1,20 @@
+﻿@using Assemblify.Web.ViewModels.Home
+@model ICollection<PostViewModel>
+
+
+@if (Model != null)
+{
+    <p>Your query returned @Model.Count results.</p>
+    foreach (var post in Model)
+    {
+        <div class="col-md-4">
+            <h2>@post.Title</h2>
+            <p>@post.Content</p>
+            <p>@Html.DisplayFor(x => post.PostedOn) - @post.AuthorEmail</p>
+        </div>
+    }
+}
+else
+{
+    <p>Your query returned 0 results.</p>
+}

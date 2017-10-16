@@ -365,7 +365,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_PostDetailsPartial.cshtml" />
     <Content Include="Views\Shared\_PostEditPartial.cshtml" />
-    <Content Include="Views\Shared\_PostListPartial.cshtml" />
+    <Content Include="Views\Shared\_PostSearchListPartial.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PostViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PostContentTextArea.cshtml" />
