@@ -13,9 +13,8 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>
-                <li>@Html.ActionLink("About", "About", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>            
                 <li>@Html.ActionLink("Search", "Index", "Search", routeValues: new { area = "" }, htmlAttributes: null)</li>
-                
+
 
                 @if (Request.IsAuthenticated)
                 {
@@ -24,11 +23,13 @@
                     </li>
                 }
 
-                @*Admin Area TODO*@
+                @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                    <li>
+                        @Html.ActionLink("Admin", "Index", "Manage", routeValues: new { area = "Administration" }, htmlAttributes: new { title = "Administration", area = "" })
+                    </li>
+                }
 
-                @*<li>@Html.ActionLink("Upload", "UploadFile", "Home")</li>*@
-                @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                @*<li>@Html.ActionLink("PageSize", "GetFiltered", new { pageSize = 3 })</li>*@
             </ul>
             @Html.Partial(PartialViews.LoginPartial)
 
