@@ -46,10 +46,7 @@ namespace Assemblify.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return this.View(new PostSearchViewModel()
-            {
-                FoundPosts = new List<PostViewModel>()
-            });
+            return this.View();
         }
 
         [HttpPost]
@@ -65,12 +62,8 @@ namespace Assemblify.Web.Controllers
                     .OrderBy(x => x.Title)
                     .ToList();
             }
-            else
-            {
-                model.FoundPosts = new List<PostViewModel>();
-            }
 
-            return this.View(model);
+            return this.RedirectToAction("Index");
         }
     }
 }

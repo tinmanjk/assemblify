@@ -5,16 +5,15 @@
 @model Assemblify.Web.ViewModels.Search.PostSearchViewModel
 
 <hr />
-@using (@Html.BeginForm("Index", "Search", FormMethod.Post, null))
+
+
+@using (Ajax.BeginForm("Index", "Search", 
+    new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultArea" }))
 {
     @Html.AntiForgeryToken()
     @Html.EditorFor(x => x.SearchTerm)
 
     <input type="submit" value="Search" />
-}
 
-
-@foreach (var post in Model.FoundPosts)
-{
-    <h2>@post.Title</h2>
 }
+<div id="resultArea"></div>
