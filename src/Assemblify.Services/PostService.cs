@@ -104,12 +104,29 @@ namespace Assemblify.Services
                 .ToList();
         }
 
-        public IEnumerable<TDest> GetPostsByUserNameMappedTo<TDest>(string userName) where TDest : IMapFrom<Post>
+        public IEnumerable<TDest> GetPostsByUserNameMappedTo<TDest>(string userName)
+            where TDest : IMapFrom<Post>
         {
 
             return this.postsRepo
                     .All
                     .Where(x => x.Author.UserName == userName.ToLower())
+                    .MapTo<TDest>()
+                    .ToList();
+        }
+
+        public IEnumerable<TDest> GetPostsFilteredForTitleOrContent<TDest>(string searchTerm)
+            where TDest : IMapFrom<Post>
+        {
+            var searchTermtoLower = searchTerm.ToLower();
+
+            return this.postsRepo
+                    .All
+                    .Where(x =>
+                          x.Title.ToLower().Contains(searchTermtoLower) ||
+                          x.Content.ToLower().Contains(searchTermtoLower)
+                          )
+                    .OrderByDescending(x => x.CreatedOn)
                     .MapTo<TDest>()
                     .ToList();
         }
@@ -170,5 +187,7 @@ namespace Assemblify.Services
                 this.context.Commit();
             }
         }
+
+
     }
 }
