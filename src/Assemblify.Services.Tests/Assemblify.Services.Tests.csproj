@@ -77,7 +77,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PostsServiceTests\GetAllAndDeletedMappedToTests.cs" />
     <Compile Include="PostsServiceTests\GetAllMappedToTests.cs" />
+    <Compile Include="PostsServiceTests\GetAllAndDeletedTests.cs" />
+    <Compile Include="PostsServiceTests\GetPostByIdAndDeletedTests.cs" />
+    <Compile Include="PostsServiceTests\GetPostByIdTests.cs" />
     <Compile Include="PostsServiceTests\GetAllTests.cs" />
     <Compile Include="PostsServiceTests\ConstructorTests.cs" />
     <Compile Include="PostsServiceTests\EditTests.cs" />

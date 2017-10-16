@@ -19,11 +19,11 @@ using System.Threading.Tasks;
 namespace Assemblify.Services.Tests.PostsServiceTests
 {
     [TestFixture]
-    public class GetAllMappedToTests
+    public class GetAllAndDeletedMappedToTests
     {
 
         [Test]
-        public void GetAllMappedTo_ShouldCallRepositoryAll()
+        public void GetAllAndDeletedMappedTo_ShouldCallRepositoryAll()
         {
             // Arrange
             var mockedPostRepository = new Mock<IEfRepository<Post>>();
@@ -45,14 +45,14 @@ namespace Assemblify.Services.Tests.PostsServiceTests
                 mockedSaveContext.Object, mockedPostFactory.Object, mockedUsersService.Object, mockedDateTimeProvider.Object);
 
             // Act
-            service.GetAllMappedTo<PostMapFrom>();
+            service.GetAllAndDeletedMappedTo<PostMapFrom>();
 
             // Assert
-            mockedPostRepository.Verify(r => r.All, Times.Once);
+            mockedPostRepository.Verify(r => r.AllAndDeleted, Times.Once);
         }
 
         [Test]
-        public void GetAllMappedTo_ShouldReturnMappedObject()
+        public void GetAllAndDeletedMappedTo_ShouldReturnMappedObject()
         {
             // Arrange
             var mockedPostRepository = new Mock<IEfRepository<Post>>();
@@ -79,7 +79,7 @@ namespace Assemblify.Services.Tests.PostsServiceTests
                 }
             };
 
-            mockedPostRepository.SetupGet(x => x.All).Returns(postsMock.AsQueryable);
+            mockedPostRepository.SetupGet(x => x.AllAndDeleted).Returns(postsMock.AsQueryable);
 
 
             var service = new PostService(mockedPostRepository.Object,
@@ -87,7 +87,7 @@ namespace Assemblify.Services.Tests.PostsServiceTests
 
             // Act
 
-            var result = service.GetAllMappedTo<PostMapFrom>();
+            var result = service.GetAllAndDeletedMappedTo<PostMapFrom>();
 
             // Assert
             Assert.AreEqual(result.FirstOrDefault().Title, titleProperty);

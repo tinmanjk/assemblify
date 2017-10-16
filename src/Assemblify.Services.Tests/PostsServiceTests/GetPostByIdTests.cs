@@ -16,10 +16,10 @@ using System.Threading.Tasks;
 namespace Assemblify.Services.Tests.PostsServiceTests
 {
     [TestFixture]
-    public class GetAllTests
+    public class GetPostByIdTests
     {
         [Test]
-        public void GetAll_ShouldCallRepositoryAll()
+        public void GetPostById_ShouldCallRepositoryGetById()
         {
             // Arrange
             var mockedPostRepository = new Mock<IEfRepository<Post>>();
@@ -35,24 +35,24 @@ namespace Assemblify.Services.Tests.PostsServiceTests
                 mockedUsersService.Object,
                 mockedDateTimeProvider.Object);
 
+            var id = Guid.NewGuid();
             // Act
-            service.GetAll();
+            service.GetPostById(id);
 
             // Assert
-            mockedPostRepository.Verify(r => r.All, Times.Once);
+            mockedPostRepository.Verify(r => r.GetById(id), Times.Once);
         }
 
         [Test]
-        public void GetAll_ShouldReturnCorrectly()
+        public void GetPostById_RepositoryReturnsLog_ShouldReturnCorrectly()
         {
             // Arrange
-            var posts = new List<Post>
-            {
-                new Post()
-            }.AsQueryable();
+            var post = new Mock<Post>();
+            var id = Guid.NewGuid();
 
             var mockedPostRepository = new Mock<IEfRepository<Post>>();
-            mockedPostRepository.Setup(r => r.All).Returns(posts);
+            mockedPostRepository.Setup(r => r.GetById(It.IsAny<object>()))
+                .Returns(post.Object);
 
             var mockedSaveContext = new Mock<ISaveContext>();
             var mockedPostFactory = new Mock<IPostFactory>();
@@ -67,10 +67,10 @@ namespace Assemblify.Services.Tests.PostsServiceTests
                 mockedDateTimeProvider.Object);
 
             // Act
-            var result = postService.GetAll();
+            var result = postService.GetPostById(id);
 
             // Assert
-            Assert.AreEqual(posts, result);
+            Assert.AreSame(post.Object, result);
         }
     }
 }

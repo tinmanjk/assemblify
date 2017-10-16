@@ -16,10 +16,10 @@ using System.Threading.Tasks;
 namespace Assemblify.Services.Tests.PostsServiceTests
 {
     [TestFixture]
-    public class GetAllTests
+    public class GetAllAndDeletedTests
     {
         [Test]
-        public void GetAll_ShouldCallRepositoryAll()
+        public void GetAllAndDeleted_ShouldCallRepositoryAll()
         {
             // Arrange
             var mockedPostRepository = new Mock<IEfRepository<Post>>();
@@ -36,14 +36,14 @@ namespace Assemblify.Services.Tests.PostsServiceTests
                 mockedDateTimeProvider.Object);
 
             // Act
-            service.GetAll();
+            service.GetAllAndDeleted();
 
             // Assert
-            mockedPostRepository.Verify(r => r.All, Times.Once);
+            mockedPostRepository.Verify(r => r.AllAndDeleted, Times.Once);
         }
 
         [Test]
-        public void GetAll_ShouldReturnCorrectly()
+        public void GetAllAndDeleted_ShouldReturnCorrectly()
         {
             // Arrange
             var posts = new List<Post>
@@ -52,7 +52,7 @@ namespace Assemblify.Services.Tests.PostsServiceTests
             }.AsQueryable();
 
             var mockedPostRepository = new Mock<IEfRepository<Post>>();
-            mockedPostRepository.Setup(r => r.All).Returns(posts);
+            mockedPostRepository.Setup(r => r.AllAndDeleted).Returns(posts);
 
             var mockedSaveContext = new Mock<ISaveContext>();
             var mockedPostFactory = new Mock<IPostFactory>();
@@ -67,7 +67,7 @@ namespace Assemblify.Services.Tests.PostsServiceTests
                 mockedDateTimeProvider.Object);
 
             // Act
-            var result = postService.GetAll();
+            var result = postService.GetAllAndDeleted();
 
             // Assert
             Assert.AreEqual(posts, result);
