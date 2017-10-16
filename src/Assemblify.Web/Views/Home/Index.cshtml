@@ -5,9 +5,6 @@
 @using Assemblify.Web.ViewModels.Home
 @model HomeViewModel
 
-
-@Html.ActionLink("Click here to go to TempExample", "TempExample", "Home")
-
 <div class="jumbotron">
     <h1>Assemblify</h1>
     <p class="lead">Create, modify and share guideposts on every topic. in AZURE</p>
@@ -17,13 +14,5 @@
     @foreach (var post in Model.Posts)
     {
         @Html.Partial("_PostDetailsPartial", post);
-    }
-</div>
-<hr />
-<div class="row">
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post, null))
-    {
-        @Html.Partial("_PostEditPartial", Model.Posts.First());
-        <button type="submit">Submit</button>
     }
 </div>

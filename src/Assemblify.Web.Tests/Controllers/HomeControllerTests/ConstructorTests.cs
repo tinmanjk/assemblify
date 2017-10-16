@@ -21,12 +21,11 @@ namespace Assemblify.Web.Tests
         {
 
             // Arrange
-            var mockedPostsService = new Mock<IPostsService>();
-            var mockedIMapper = new Mock<IMapper>();
+            var mockedPostsService = new Mock<IPostService>();
             var mockedCachingProvider = new Mock<IHttpCachingProvider>();
 
             // Act
-            var controller = new HomeController(mockedPostsService.Object, mockedIMapper.Object, mockedCachingProvider.Object);
+            var controller = new HomeController(mockedPostsService.Object, mockedCachingProvider.Object);
             // Assert
             Assert.IsNotNull(controller);
         }
@@ -35,11 +34,10 @@ namespace Assemblify.Web.Tests
         public void TestConstructor_PassCachingProviderNull_ShouldThrowArgumentNullException()
         {
             // Arrange
-            var mockedPostsService = new Mock<IPostsService>();
-            var mockedIMapper = new Mock<IMapper>();
+            var mockedPostsService = new Mock<IPostService>();
 
             // Act, Assert
-            Assert.Throws<ArgumentNullException>(() => new HomeController(mockedPostsService.Object, mockedIMapper.Object, null));
+            Assert.Throws<ArgumentNullException>(() => new HomeController(mockedPostsService.Object, null));
         }
     }
 }

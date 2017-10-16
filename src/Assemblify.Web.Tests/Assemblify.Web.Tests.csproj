@@ -109,8 +109,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Administration\ManageControllerTests\IndexTests.cs" />
+    <Compile Include="Controllers\Administration\PostControllerTests\CreateGetTests.cs" />
+    <Compile Include="Controllers\Administration\PostControllerTests\CreatePostTests.cs" />
+    <Compile Include="Controllers\Administration\PostControllerTests\DeleteConfirmedPostTests.cs" />
+    <Compile Include="Controllers\Administration\PostControllerTests\DeleteGetTests.cs" />
+    <Compile Include="Controllers\Administration\PostControllerTests\EditPostTests.cs" />
+    <Compile Include="Controllers\Administration\PostControllerTests\EditGetTests.cs" />
+    <Compile Include="Controllers\Administration\PostControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\HomeControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\HomeControllerTests\IndexTests.cs" />
+    <Compile Include="Controllers\PostControllerTests\PostsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routes\Fakes\UserNameConstraintMock.cs" />
     <Compile Include="Routes\HomeRouteTests\AboutTests.cs" />
@@ -124,6 +133,14 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Assemblify.Common\Assemblify.Common.csproj">
+      <Project>{1D158BAF-97C1-4E33-AE26-3756ABD54BFD}</Project>
+      <Name>Assemblify.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Assemblify.Data.Models\Assemblify.Data.Models.csproj">
+      <Project>{769F8F44-21F2-4374-997E-3DF923DCA05D}</Project>
+      <Name>Assemblify.Data.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Assemblify.Infrastructure\Assemblify.Infrastructure.csproj">
       <Project>{57c7eeda-8ba9-4b09-99dd-d6840584ad15}</Project>
       <Name>Assemblify.Infrastructure</Name>
@@ -140,6 +157,9 @@
       <Project>{B7917151-076E-458B-9BA7-5070CA2CDF1B}</Project>
       <Name>Assemblify.Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Start\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

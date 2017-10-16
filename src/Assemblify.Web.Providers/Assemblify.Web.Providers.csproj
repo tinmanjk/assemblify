@@ -114,6 +114,10 @@
       <Project>{c9c93146-ef01-4e08-917b-919c52c934b4}</Project>
       <Name>Assemblify.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Assemblify.Infrastructure\Assemblify.Infrastructure.csproj">
+      <Project>{57C7EEDA-8BA9-4B09-99DD-D6840584AD15}</Project>
+      <Name>Assemblify.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

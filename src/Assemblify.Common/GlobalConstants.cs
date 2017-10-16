@@ -15,6 +15,14 @@ namespace Assemblify.Common
         public const string AdministratorPassword = "asdasd";
 
         public const string CachingUserNames = "userNames";
+        public const int CachingDefaultDuration = 60 * 1;
+
+        public const string ErrorNotCreatedPostKey = "notCreatedError";
+        public const string ErrorNotCreatedPostValue = "Post could not be created";
+
+        public const string ErrorNotEditedPostKey = "notEdited";
+        public const string ErrorNotEditedPostValue = "Post could not be edited";
+
 
     }
 }

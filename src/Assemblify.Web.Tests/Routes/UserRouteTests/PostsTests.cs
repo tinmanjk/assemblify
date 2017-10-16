@@ -28,7 +28,7 @@ namespace Assemblify.Web.Tests.Routes.UserRouteTests
 
             var constraintsFactoryMock = new Mock<IConstraintsFactory>();
             var cachingProviderMock = new Mock<IHttpCachingProvider>();
-            var usersServiceMock = new Mock<IUsersService>();
+            var usersServiceMock = new Mock<IUserService>();
             var userNameConstraintMock = new UserNameConstraintMock();
 
             constraintsFactoryMock
@@ -42,7 +42,7 @@ namespace Assemblify.Web.Tests.Routes.UserRouteTests
 
 
             // Act && Assert
-            routeCollection.ShouldMap(Url).To<UserController>(c => c.Posts(userName, postTitle));
+            routeCollection.ShouldMap(Url).To<PostController>(c => c.PostsByUserName(userName, postTitle));
         }
     }
 }

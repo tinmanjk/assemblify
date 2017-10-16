@@ -57,11 +57,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IUsersService.cs" />
-    <Compile Include="Contracts\IPostsService.cs" />
+    <Compile Include="Contracts\IUserService.cs" />
+    <Compile Include="Contracts\IPostService.cs" />
     <Compile Include="Contracts\IServiceNinjectRegistry.cs" />
-    <Compile Include="UsersService.cs" />
-    <Compile Include="PostsService.cs" />
+    <Compile Include="UserService.cs" />
+    <Compile Include="PostService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

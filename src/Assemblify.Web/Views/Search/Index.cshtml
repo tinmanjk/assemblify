@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Search";
+}
+
+@model Assemblify.Web.ViewModels.Search.PostSearchViewModel
+
+<hr />
+@using (@Html.BeginForm("Index", "Search", FormMethod.Post, null))
+{
+    @Html.AntiForgeryToken()
+    @Html.EditorFor(x => x.SearchTerm)
+
+    <input type="submit" value="Search" />
+}
+
+
+@foreach (var post in Model.FoundPosts)
+{
+    <h2>@post.Title</h2>
+}

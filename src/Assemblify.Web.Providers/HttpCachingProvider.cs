@@ -13,41 +13,28 @@ namespace Assemblify.Web.Providers
     public class HttpCachingProvider: IHttpCachingProvider
     {
         private static readonly object LockObject = new object();
+        private readonly IHttpContextProvider httpContextProvider;
 
-        // overload without duration
-        public T GetOrAdd<T>(string cacheId, Func<T> getDataCallBack)
+        public HttpCachingProvider(IHttpContextProvider httpContextProvider)
         {
-            if (HttpRuntime.Cache[cacheId] == null)
+            if (httpContextProvider == null)
             {
-                lock (LockObject)
-                {
-                    if (HttpRuntime.Cache[cacheId] == null)
-                    {
-                        var data = getDataCallBack();
-                        HttpRuntime.Cache.Insert(
-                            cacheId,
-                            data,
-                            null,
-                            Cache.NoAbsoluteExpiration,
-                            Cache.NoSlidingExpiration);
-                    }
-                }
+                throw new ArgumentNullException(nameof(httpContextProvider));
             }
 
-            return (T)HttpRuntime.Cache[cacheId];
+            this.httpContextProvider = httpContextProvider;
         }
 
-        public T GetOrAdd<T>(string cacheId, Func<T> getDataCallBack, int durationInSeconds)
+        public T GetOrAdd<T>(string cacheId, Func<T> getDataCallBack, int durationInSeconds = GlobalConstants.CachingDefaultDuration)
         {
-
-            if (HttpRuntime.Cache[cacheId] == null)
+            if (httpContextProvider.ContextCache[cacheId] == null)
             {
                 lock (LockObject)
                 {
-                    if (HttpRuntime.Cache[cacheId] == null)
+                    if (httpContextProvider.ContextCache[cacheId] == null)
                     {
                         var data = getDataCallBack();
-                        HttpRuntime.Cache.Insert(
+                        httpContextProvider.ContextCache.Insert(
                             cacheId,
                             data,
                             null,
@@ -57,19 +44,7 @@ namespace Assemblify.Web.Providers
                 }
             }
 
-            return (T)HttpRuntime.Cache[cacheId];
-        }
-
-        public void Update<T>(string cacheId, Func<T> getDataCallBack)
-        {
-            this.Remove(cacheId);
-            this.GetOrAdd(cacheId, getDataCallBack);
-
-        }
-
-        public void Remove(string cacheId)
-        {
-            HttpRuntime.Cache.Remove(cacheId);
+            return (T)httpContextProvider.ContextCache[cacheId];
         }
     }
 }

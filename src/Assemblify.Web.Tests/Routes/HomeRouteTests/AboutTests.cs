@@ -22,10 +22,10 @@ namespace Assemblify.Web.Tests.Routes.HomeRouteTests
         public void HomeAboutRoute_ShouldWorkCorreclty()
         {
             // Arrange 
-            string url = $"/home/about";
+            string url = $"/home/index";
             var constraintsFactoryMock = new Mock<IConstraintsFactory>();
             var cachingProviderMock = new Mock<IHttpCachingProvider>();
-            var usersServiceMock = new Mock<IUsersService>();
+            var usersServiceMock = new Mock<IUserService>();
             var userNameConstraintMock = new UserNameConstraintMock();
 
             constraintsFactoryMock
@@ -38,7 +38,7 @@ namespace Assemblify.Web.Tests.Routes.HomeRouteTests
             routeConfig.RegisterRoutes(routeCollection);
 
             // Act && Assert
-            routeCollection.ShouldMap(url).To<HomeController>(c => c.About());
+            routeCollection.ShouldMap(url).To<HomeController>(c => c.Index());
         }
     }
 }

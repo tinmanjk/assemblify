@@ -22,11 +22,11 @@ namespace Assemblify.Web.Areas.Administration.Controllers
 
     public class PostController : Controller
     {
-        private IPostsService postsService;
+        private IPostService postsService;
         private IAuthenticationProvider authenticationProvider;
         private IMapper mapper;
 
-        public PostController(IPostsService postsService,
+        public PostController(IPostService postsService,
             IAuthenticationProvider authenticationProvider,
             IMapper mapper)
         {
@@ -59,9 +59,15 @@ namespace Assemblify.Web.Areas.Administration.Controllers
             if (ModelState.IsValid)
             {
                 var userId = this.authenticationProvider.CurrentUserId;
-                this.postsService.CreatePost(model.Title, model.Content, userId);
-
-                return RedirectToAction("Index");
+                var createdPost = this.postsService.CreatePost(model.Title, model.Content, userId);
+                if (createdPost != null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError(GlobalConstants.ErrorNotCreatedPostKey, GlobalConstants.ErrorNotCreatedPostValue);
+                }
             }
 
             return View(model);
@@ -94,11 +100,20 @@ namespace Assemblify.Web.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                this.postsService.Edit(model.Id, model.Title, model.Content, model.IsDeleted);
+                var editedPost = this.postsService.Edit(model.Id, model.Title, model.Content, model.IsDeleted);
 
+                if (editedPost != null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError(GlobalConstants.ErrorNotEditedPostKey, GlobalConstants.ErrorNotEditedPostValue);
 
-                return RedirectToAction("Index");
+                }
+   
             }
+
             return View(model);
         }
 
@@ -126,7 +141,6 @@ namespace Assemblify.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-
             this.postsService.HardDelete(id);
             return RedirectToAction("Index");
         }

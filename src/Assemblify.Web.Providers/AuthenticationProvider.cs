@@ -9,21 +9,31 @@ using Assemblify.Data.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Assemblify.Web.Providers.Managers;
 using System.Web.Hosting;
+using Assemblify.Infrastructure.Providers.Contracts;
 
 namespace Assemblify.Web.Providers
 {
     public class AuthenticationProvider : IAuthenticationProvider
     {
 
+        private readonly IDateTimeProvider dateTimeProvider;
+
         private readonly IHttpContextProvider httpContextProvider;
 
-        public AuthenticationProvider(IHttpContextProvider httpContextProvider)
+
+        public AuthenticationProvider(IDateTimeProvider dateTimeProvider, IHttpContextProvider httpContextProvider)
         {
+            if (dateTimeProvider == null)
+            {
+                throw new ArgumentNullException(nameof(dateTimeProvider));
+            }
+
             if (httpContextProvider == null)
             {
                 throw new ArgumentNullException(nameof(httpContextProvider));
             }
 
+            this.dateTimeProvider = dateTimeProvider;
             this.httpContextProvider = httpContextProvider;
         }
 

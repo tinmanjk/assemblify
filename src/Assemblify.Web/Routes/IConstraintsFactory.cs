@@ -6,6 +6,6 @@ namespace Assemblify.Web.Routes
 {
     public interface IConstraintsFactory
     {
-        IRouteConstraint CreateUserNameConstraint(IHttpCachingProvider cachingProvider, IUsersService usersService);
+        IRouteConstraint CreateUserNameConstraint(IHttpCachingProvider cachingProvider, IUserService usersService);
     }
 }
