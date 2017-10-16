@@ -15,6 +15,10 @@ namespace Assemblify.Web.Controllers
 
         public PostController(IPostService postsService)
         {
+            if (postsService == null)
+            {
+                throw new ArgumentNullException(nameof(postsService));
+            }
             this.postsService = postsService;
         }
 
@@ -24,7 +28,7 @@ namespace Assemblify.Web.Controllers
             return this.View();
         }
 
-        public ActionResult PostsByUserName(string username, string postTitle)
+        public ActionResult PostsByUserName(string username)
         {
             var posts = this.postsService
                             .GetPostsByUserNameMappedTo<UserPostsViewModel>(username);

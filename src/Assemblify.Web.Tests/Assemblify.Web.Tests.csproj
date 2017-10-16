@@ -119,7 +119,9 @@
     <Compile Include="Controllers\Administration\PostControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\HomeControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\HomeControllerTests\IndexTests.cs" />
-    <Compile Include="Controllers\PostControllerTests\PostsTests.cs" />
+    <Compile Include="Controllers\PostControllerTests\ConstructorTests.cs" />
+    <Compile Include="Controllers\PostControllerTests\CreateTests.cs" />
+    <Compile Include="Controllers\PostControllerTests\PostsByUserNameTests.cs" />
     <Compile Include="Controllers\SearchControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\SearchControllerTests\GetPostsTests.cs" />
     <Compile Include="Controllers\SearchControllerTests\IndexTests.cs" />

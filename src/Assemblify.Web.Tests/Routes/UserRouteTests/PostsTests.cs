@@ -42,7 +42,7 @@ namespace Assemblify.Web.Tests.Routes.UserRouteTests
 
 
             // Act && Assert
-            routeCollection.ShouldMap(Url).To<PostController>(c => c.PostsByUserName(userName, postTitle));
+            routeCollection.ShouldMap(Url).To<PostController>(c => c.PostsByUserName(userName));
         }
     }
 }
