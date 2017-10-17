@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Assemblify.Infrastructure.Mapping;
 using Assemblify.Infrastructure.Factories;
 using Assemblify.Infrastructure.Providers.Contracts;
+using System.Linq.Expressions;
 
 namespace Assemblify.Services
 {
@@ -102,6 +103,17 @@ namespace Assemblify.Services
                 .AllAndDeleted
                 .MapTo<TDest>()
                 .ToList();
+        }
+
+
+        public IEnumerable<TDest> GetFilteredByAndMappedTo<TDest>(Expression<Func<Post, bool>> filter)
+            where TDest : IMapFrom<Post>
+                {
+                    return this.postsRepo
+                        .All
+                        .Where(filter)
+                        .MapTo<TDest>()
+                        .ToList();
         }
 
         public IEnumerable<TDest> GetPostsByUserNameMappedTo<TDest>(string userName)

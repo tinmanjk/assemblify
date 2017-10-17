@@ -1,7 +1,9 @@
 ﻿using Assemblify.Data.Models;
 using Assemblify.Infrastructure.Mapping;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Assemblify.Services.Contracts
 {
@@ -16,6 +18,9 @@ namespace Assemblify.Services.Contracts
         IEnumerable<TDest> GetAllMappedTo<TDest>()
             where TDest : IMapFrom<Post>;
         IEnumerable<TDest> GetAllAndDeletedMappedTo<TDest>()
+            where TDest : IMapFrom<Post>;
+
+        IEnumerable<TDest> GetFilteredByAndMappedTo<TDest>(Expression<Func<Post, bool>> filter)
             where TDest : IMapFrom<Post>;
 
         IEnumerable<TDest> GetPostsByUserNameMappedTo<TDest>(string userName)

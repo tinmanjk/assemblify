@@ -30,8 +30,13 @@ namespace Assemblify.Web.Controllers
 
         public ActionResult PostsByUserName(string username)
         {
+            //var posts = this.postsService
+            //                .GetPostsByUserNameMappedTo<UserPostsViewModel>(username);
+
             var posts = this.postsService
-                            .GetPostsByUserNameMappedTo<UserPostsViewModel>(username);
+                .GetFilteredByAndMappedTo<UserPostsViewModel>(x => 
+                    x.Author.UserName.ToLower() == username.ToLower());
+
             return View(posts);
         }
     }
