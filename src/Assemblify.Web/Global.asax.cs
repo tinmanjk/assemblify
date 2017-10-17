@@ -43,7 +43,12 @@ namespace Assemblify.Web
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
-            var routeConfig = new RouteConfig();
+            var cachingProvider = DependencyResolver.Current.GetService<IHttpCachingProvider>();
+            var userService = DependencyResolver.Current.GetService<IUserService>();
+            var constraintsFactory = DependencyResolver.Current.GetService<IConstraintsFactory>();
+
+            var routeConfig = new RouteConfig(constraintsFactory, cachingProvider, userService);
+
             routeConfig.RegisterRoutes(RouteTable.Routes);
 
             BundleConfig.RegisterBundles(BundleTable.Bundles);
