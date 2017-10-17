@@ -21,15 +21,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script>
-        $(document).ready(function () {
+    @Scripts.Render("~/bundles/custom")
 
-            var dt = new Date();
-            var tzo = dt.getTimezoneOffset();
-            document.cookie = "timeZoneOffset=" + tzo + "; path=/";
-
-        });
-    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
